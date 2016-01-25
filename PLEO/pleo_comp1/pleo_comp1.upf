@@ -55,6 +55,7 @@
 	<motion path="${MOTIONS}/com_walk_fs_rage.csv" />
 	<motion path="${MOTIONS}/walk_straight.csv" />
 	<motion path="${MOTIONS}/scan.csv" />
+	<motion path="${MOTIONS}/com_walk_fs_hd_edited.csv" />
 	
     <!-- Commands -->
 <!--    <command path="${COMMANDS}/name.csv" /> -->

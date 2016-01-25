@@ -75,14 +75,16 @@ public main()
 	//walk_fr_2();
 	//turnright180();
 	
-
+	/*while(1)
+		walkforward();*/
 	
 	
-	turnleft();
+	/*turnleft();
 	knockover();
-	wag();
+	wag();*/
 	
-
+    scan();
+	 
     //test_sensors();
   
 			
@@ -353,13 +355,16 @@ public knockover(){
 }
 
 public scan(){
-	motion_play(mot_scan);
-	while(motion_is_playing(mot_scan)){
-		if(object_check())
-		{
-			objlatch=1;
-			motion_stop(mot_scan);
-			return 1;
+	while(!(object_check())){
+		motion_play(mot_scan);
+		while(motion_is_playing(mot_scan)){
+			if(object_check())
+			{
+				sound_play(snd_1p1_honk04);	
+				objlatch=1;
+				motion_stop(mot_scan);
+				return 1;
+			}
 		}
 	}
 }
