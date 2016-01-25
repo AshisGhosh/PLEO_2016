@@ -1,0 +1,1 @@
+xcopy build\pleo_comp1.urf D: /Y
