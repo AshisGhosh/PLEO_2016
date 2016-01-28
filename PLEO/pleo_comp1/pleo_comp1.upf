@@ -28,6 +28,8 @@
     <!-- Sounds -->
     <sound path="${SOUNDS}/growl.wav" />
 	<sound path="${SOUNDS}/1p1_honk04.wav" />
+	<sound path="${SOUNDS}/fuck.wav" />
+	<sound path="${SOUNDS}/twitch.wav" />
 
     <!-- Motions -->
     <motion path="${MOTIONS}/com_walk_fs.csv" />
@@ -56,6 +58,11 @@
 	<motion path="${MOTIONS}/walk_straight.csv" />
 	<motion path="${MOTIONS}/scan.csv" />
 	<motion path="${MOTIONS}/com_walk_fs_hd_edited.csv" />
+	<motion path="${MOTIONS}/test_walk.csv" />
+	<motion path="${MOTIONS}/pivot_right.csv" />
+	<motion path="${MOTIONS}/scan_lf.csv" />
+	<motion path="${MOTIONS}/pivot_test.csv" />
+	<motion path="${MOTIONS}/pivot_booty.csv" />
 	
     <!-- Commands -->
 <!--    <command path="${COMMANDS}/name.csv" /> -->

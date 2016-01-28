@@ -1,4 +1,6 @@
 <enum max="32767" min="4096" name="sound" namesoff="true" short="snd">
   <e id=" 4099" name="growl" />
   <e id=" 4100" name="1p1_honk04" />
+  <e id=" 4101" name="fuck" />
+  <e id=" 4102" name="twitch" />
 </enum>
