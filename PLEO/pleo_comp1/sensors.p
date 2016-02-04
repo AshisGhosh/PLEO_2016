@@ -45,7 +45,7 @@ public on_sensor(time, sensor_name: sensor, value)
 	case SENSOR_LIGHT:
 		if (value <=100)
 		{
-			sound_play(snd_fuck);
+			//sound_play(snd_fuck);
 		}	
     }
     

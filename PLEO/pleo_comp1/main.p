@@ -54,6 +54,7 @@ public sweep_hdr();
 public turnleft_find();
 public turnright_find();
 public zero_in();
+public walk_fs_across();
 //public soc_stand();
 
 
@@ -66,19 +67,15 @@ new obj_angle=0;
 //TODO:
 // * Calibrate forward movement. Convert one motion to cm
 // * Change walk forward while head down right to allow it to detect edges to the front right, not just right
-// * Adapt object detection threshold for the change above in head angle
-// * Calibrate sensor IR distance. Map points 100, 95, 90, 80, 60, 40, 20 to distances
 // * Develop motion files for tight turning radius
 // * Develop motion files for straight walk with head fixed towards the right and left
 // * Make faster head sweep motion file for intial edge detection
 // * Develop recognition of starting orientation
 // * Develop confirmation of objects knocked down
-// * Develop transition from scanning to moving towards and knocking down object
-//		--> read head position
-//		--> go from head position to robot orientation
+
 
 new testflag =0;
-new state_mach = 1;
+new state_mach = 2;
 
 public main()
 {
@@ -99,9 +96,9 @@ public main()
 		
 		//start turning towards first object
 		turnleftscan();
-		sound_play(snd_twitch);
+		sound_play(snd_beep);
 		walkforward();
-		
+		sound_play(snd_beep);
 		
 		//call function to home in on object using neck scanning and identifying position
 		//object knocked over as soon as not picked up in a single scan
@@ -109,18 +106,22 @@ public main()
 		
 		
 		zero_in();
+		sound_play(snd_beep);
 		
 		//confirmation animation of knocking over
 		wag();
+		sound_play(snd_beep);
 		
 		//begn to walk across the table to the far end
-		joint_move_to(JOINT_NECK_VERTICAL, -60, 200, angle_degrees );
+		
+		joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
+		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+		sound_play(snd_beep);
+		joint_move_to(JOINT_NECK_VERTICAL, -30, 200, angle_degrees );
 		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
-		while(object_check()){
-			walkforward();
-			joint_move_to(JOINT_NECK_VERTICAL, -60, 200, angle_degrees );
-			while(joint_is_moving(JOINT_NECK_VERTICAL)){}
-		}
+		sound_play(snd_beep);
+				
+		walk_fs_hdr_across();
 		
 		
 		//TODO: condition to exit moving towards far end and enter STATE 2. Options:
@@ -132,24 +133,38 @@ public main()
 	}
 	
 	if (state_mach==2){
+		sound_play(snd_beep);
+		sound_play(snd_beep);
+		sound_play(snd_beep);
+		sound_play(snd_beep);
+		backleft();
+		backright();
+		turnleftshort();
 		
 		//sound_play(snd_fuck);
 		
 		//scan for object, if not there then backup towards the right (object presumed to be on the left)
-		while(!(scan())){	
+		/*while(!(scan())){	
 			backright();
 			joint_move_to(JOINT_NECK_VERTICAL, 20, 200, angle_degrees ); //reset head position for proper scanning
 			while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 			
-		}
+		}*/
 		
 		//Once object is detected, start using the zero_in() function
 		//If the object is lost (i.e. not picked up when zero_in() calls scan()) then backup and zero_in() agan
 		//Needs exit condition to consider having hit all three objects
-		
+		new direction =1;
 		while(1){
 			zero_in();
-			backright();
+			if(direction){
+				backright();
+				direction=0;
+			}
+			else{
+				turnleftshort();
+				direction=1;
+			}
 			joint_move_to(JOINT_NECK_VERTICAL, 10, 200, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 			joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
@@ -165,6 +180,9 @@ public main()
 		
 	
 	testcode:
+	
+		while(1)
+			scan();
 		/*while(1){
 			motion_play(mot_test_walk);
 			while(motion_is_playing(mot_test_walk)){}
@@ -175,12 +193,20 @@ public main()
 			}
 				
 		}*/
-		
-		while(1){
-			sound_play(snd_twitch);
-			motion_play(mot_pivot_test);
-			while(motion_is_playing(mot_pivot_test)){}
-		}
+		/*joint_move_to(JOINT_NECK_VERTICAL, 10, 200, angle_degrees );
+		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+		joint_move_to(JOINT_NECK_VERTICAL, -45, 200, angle_degrees );
+		while(joint_is_moving(JOINT_NECK_VERTICAL)){}	
+
+		while(sensor_get_value(SENSOR_OBJECT>25)){
+			sound_play(snd_beep);
+			motion_play(mot_walk_straight_hd);
+			while(motion_is_playing(mot_walk_straight_hd)){
+				if(sensor_get_value(SENSOR_OBJECT)<=25){
+						motion_stop(mot_walk_straight_hd);
+				}
+			}
+		}*/
 	
 		/*while(1){
 			//motion_play(mot_walk_straight);
@@ -254,27 +280,42 @@ public zero_in()
 	while(scan()){
 	obj_angle=joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
 	sound_play(snd_twitch);
-		if(obj_angle>=20){
+		if(obj_angle>=10){
 			sound_play(snd_growl);
 			turnrightshort();
 		}
-		else if(obj_angle<=-20)
+		else if(obj_angle<=-10)
 			turnleftshort();
 		
 		else
 			knockover();
 		}
-		joint_move_to(JOINT_NECK_VERTICAL, 10, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+	
 }
 public walkforward()
 {
 				//objlatch=1;
-            	motion_play(mot_test_walk);
-				while (motion_is_playing(mot_test_walk)){
+            	motion_play(mot_walk_straight);
+				while (motion_is_playing(mot_walk_straight)){
 					
 					if((object_check())){
 						sound_play(snd_1p1_honk04);
+					}
+				}
+					
+}
+
+public walk_fs_across()
+{
+				//objlatch=1;
+            	motion_play(mot_walk_straight_hd);
+				while (motion_is_playing(mot_walk_straight_hd)){
+					
+					if(sensor_get_value(SENSOR_OBJECT)<=25){
+						sound_play(snd_1p1_honk04);
+						motion_stop(mot_walk_straight_hd);
+						return 1;
+						
 					}
 				}
 					
@@ -299,16 +340,31 @@ public walk_fs_hd()
 
 public walk_fs_hdr()
 {
-	while(sensor_get_value(SENSOR_OBJECT)>=25){
+	motion_play(mot_com_walk_fs_hdr);
+	while(motion_is_playing(mot_com_walk_fs_hdr)){}
+}
 
+public walk_fs_hdr_across()
+{
+	while(sensor_get_value(SENSOR_OBJECT)>=25){
+		sound_play(snd_beep);
+				
             	motion_play(mot_com_walk_fs_hdr);
 				while (motion_is_playing(mot_com_walk_fs_hdr))
-         			{
-              			if(sensor_get_value(SENSOR_OBJECT)<=25){
-							motion_stop(mot_com_walk_fs_hdr);
-							return 1;
-							}
+         		{
+              		if(sensor_get_value(SENSOR_OBJECT)<=25){
+						motion_stop(mot_com_walk_fs_hdr);
+						joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
+						while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+						if(sensor_get_value(SENSOR_OBJECT>25))
+								turnleftshort();
+							
 					}
+				}
+				joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				joint_move_to(JOINT_NECK_VERTICAL, -30, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 					
 		 }	
 	return 0;
@@ -500,9 +556,9 @@ public edge_check()
 
 public object_check()
 {       
-	if(sensor_get_value(SENSOR_OBJECT)>=90)
+	if(sensor_get_value(SENSOR_OBJECT)>=92)
 	{
-		sound_play(snd_1p1_honk04);
+		//sound_play(snd_1p1_honk04);
 		return 1;
 	}
 }
@@ -527,7 +583,8 @@ public scan(){
 	//while(sensor_get_value(SENSOR_OBJECT)<75){
 		motion_play(mot_scan_lf);
 		while(motion_is_playing(mot_scan_lf)){
-			if(sensor_get_value(SENSOR_OBJECT)>=68)
+			joint_move_to(JOINT_NECK_VERTICAL, 15, 200, angle_degrees );
+			if(((sensor_get_value(SENSOR_OBJECT)>=68)&&state_mach==1) || ((sensor_get_value(SENSOR_OBJECT)>=40)&&state_mach==2))
 			{
 				motion_stop(mot_scan_lf);
 				sound_play(snd_1p1_honk04);	

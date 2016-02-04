@@ -12,5 +12,6 @@ enum sound_name {
   snd_1p1_honk04 =  4100,
   snd_fuck       =  4101,
   snd_twitch     =  4102,
+  snd_beep       =  4103,
   snd_max
 };
