@@ -42,11 +42,17 @@ public on_sensor(time, sensor_name: sensor, value)
 			sound_play(snd_1p1_honk04);
 		}
 		
-	case SENSOR_LIGHT:
-		if (value <=100)
+	case SENSOR_OBJECT:
+		if (value >=98)
 		{
-			//sound_play(snd_fuck);
-		}	
+					
+		}
+
+	case SENSOR_SOUND_LOUD:
+		if (value){
+			
+			
+		}
     }
     
 	// reset sensor trigger

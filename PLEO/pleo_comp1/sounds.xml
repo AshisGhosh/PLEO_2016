@@ -4,4 +4,14 @@
   <e id=" 4101" name="fuck" />
   <e id=" 4102" name="twitch" />
   <e id=" 4103" name="beep" />
+  <e id=" 4104" name="left" />
+  <e id=" 4105" name="right" />
+  <e id=" 4106" name="ahead" />
+  <e id=" 4107" name="state_one" />
+  <e id=" 4108" name="state_two" />
+  <e id=" 4109" name="end_of_program" />
+  <e id=" 4110" name="going_across" />
+  <e id=" 4111" name="state_three" />
+  <e id=" 4112" name="scan_count_hit" />
+  <e id=" 4113" name="scan_fail_hit" />
 </enum>

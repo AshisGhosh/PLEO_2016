@@ -31,6 +31,18 @@
 	<sound path="${SOUNDS}/fuck.wav" />
 	<sound path="${SOUNDS}/twitch.wav" />
 	<sound path="${SOUNDS}/beep.wav" />
+	<sound path="${SOUNDS}/left.wav" />
+	<sound path="${SOUNDS}/right.wav" />
+	<sound path="${SOUNDS}/ahead.wav" />
+	<sound path="${SOUNDS}/state_one.wav" />
+	<sound path="${SOUNDS}/state_two.wav" />
+	<sound path="${SOUNDS}/state_three.wav" />
+	<sound path="${SOUNDS}/end_of_program.wav" />
+	<sound path="${SOUNDS}/going_across.wav" />
+	<sound path="${SOUNDS}/scan_count_hit.wav" />
+	<sound path="${SOUNDS}/scan_fail_hit.wav" />
+	
+
 
     <!-- Motions -->
     <motion path="${MOTIONS}/com_walk_fs.csv" />
@@ -57,7 +69,7 @@
 	<motion path="${MOTIONS}/sweep_right.csv" />
 	<motion path="${MOTIONS}/com_walk_fs_rage.csv" />
 	<motion path="${MOTIONS}/walk_straight.csv" />
-	<motion path="${MOTIONS}/scan.csv" />
+	<motion path="${MOTIONS}/scan_rf.csv" />
 	<motion path="${MOTIONS}/com_walk_fs_hd_edited.csv" />
 	<motion path="${MOTIONS}/pivot_right.csv" />
 	<motion path="${MOTIONS}/scan_lf.csv" />
@@ -65,6 +77,7 @@
 	<motion path="${MOTIONS}/pivot_booty.csv" />
 	<motion path="${MOTIONS}/test_walk_DM.csv" />
 	<motion path="${MOTIONS}/walk_straight_hd.csv" />
+	<motion path="${MOTIONS}/walk_straight_hdr.csv" />
 	
     <!-- Commands -->
 <!--    <command path="${COMMANDS}/name.csv" /> -->
