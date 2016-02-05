@@ -32,4 +32,5 @@
   <e id=" 8229" name="walk_straight_hd" />
   <e id=" 8230" name="scan_rf" />
   <e id=" 8231" name="walk_straight_hdr" />
+  <e id=" 8232" name="com_walk_fl_hd" />
 </enum>
