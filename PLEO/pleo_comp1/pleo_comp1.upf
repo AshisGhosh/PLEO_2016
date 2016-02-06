@@ -41,6 +41,7 @@
 	<sound path="${SOUNDS}/going_across.wav" />
 	<sound path="${SOUNDS}/scan_count_hit.wav" />
 	<sound path="${SOUNDS}/scan_fail_hit.wav" />
+	<sound path="${SOUNDS}/bite.wav" />
 	
 
 

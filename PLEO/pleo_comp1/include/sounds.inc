@@ -23,5 +23,6 @@ enum sound_name {
   snd_state_three    =  4111,
   snd_scan_count_hit =  4112,
   snd_scan_fail_hit  =  4113,
+  snd_bite           =  4114,
   snd_max
 };

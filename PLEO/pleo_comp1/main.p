@@ -28,6 +28,7 @@ public init()
 }
 
 public walkforward();    //standard walk forward function
+public walkforward_scan();
 public walk_fs_hd();
 public walk_fs_hdr();
 public wag();
@@ -39,8 +40,11 @@ public headleft();
 public turnleft();
 public turnleftscan();
 public turnleftshort();
+public turnleftshort_scan();
 public turnleftshort_hd();
 public turnright();
+public turnrightshort();
+public turnrightshort_scan();
 public turnright180();
 public lean_back();
 public backright();
@@ -112,6 +116,10 @@ public main()
 		
 		
 		zero_in();
+		if(!objlatch){
+			sound_play(snd_bite);
+			while(sound_is_playing(snd_bite)){}
+		}
 		
 		
 		//confirmation animation of knocking over
@@ -185,7 +193,7 @@ public main()
 			joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 			
-			if(scan_count >= 5){
+			if(scan_count >= 7){
 				sound_play(snd_scan_count_hit);
 				while(sound_is_playing(snd_scan_count_hit)){}
 			}
@@ -195,7 +203,7 @@ public main()
 				while(sound_is_playing(snd_scan_fail_hit)){}
 			}
 			
-			if((scan_count>=5 && scan_fail >=2) || scan_fail >=5)
+			if((scan_count>=7 && scan_fail >=2) || scan_fail >=5)
 				break;
 			
 		}
@@ -340,7 +348,7 @@ public zero_in()
 			if(sensor_get_value(SENSOR_OBJECT)>=68){
 				sound_play(snd_ahead);
 				while(sound_is_playing(snd_ahead)){}
-				knockover();
+				walkforward();
 			}
 		}
 		
@@ -356,13 +364,23 @@ public zero_in()
 public walkforward()
 {
 				//objlatch=1;
-            	motion_play(mot_walk_straight);
-				while (motion_is_playing(mot_walk_straight)){
+    motion_play(mot_walk_straight);
+	while (motion_is_playing(mot_walk_straight)){}
 					
-					if((object_check())){
-						sound_play(snd_1p1_honk04);
-					}
-				}
+}
+
+public walkforward_scan()
+{
+	//objlatch=1;
+    motion_play(mot_walk_straight);
+	while (motion_is_playing(mot_walk_straight)){
+					
+		if(sensor_get_value(SENSOR_OBJECT)<50){
+			sound_play(snd_1p1_honk04);
+		}
+		else
+			motion_stop(mot_walk_straight);
+	}
 					
 }
 
@@ -417,7 +435,7 @@ public walk_fs_hdr_across()
 				joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
 				while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 				if(sensor_get_value(SENSOR_OBJECT>25)){	
-					turnleftshort();
+					turnleftshort_hd();
 					hdr();
 				}
 						
@@ -513,6 +531,15 @@ public turnleftshort()
 	while(motion_is_playing(mot_com_walk_fl_short)){}
 }
 
+public turnleftshort_scan()
+{
+	motion_play(mot_com_walk_fl_short)
+	while(motion_is_playing(mot_com_walk_fl_short)){
+		if(sensor_get_value(SENSOR_OBJECT)<50)
+			motion_stop(mot_com_walk_fl_short);
+	}
+}
+
 public turnleftshort_hd()
 {
 	motion_play(mot_com_walk_fl_hd)
@@ -542,6 +569,15 @@ public turnrightshort()
 {
 	motion_play(mot_com_walk_fr_short);
 	while(motion_is_playing(mot_com_walk_fr_short)){}
+}
+
+public turnrightshort_scan()
+{
+	motion_play(mot_com_walk_fr_short)
+	while(motion_is_playing(mot_com_walk_fr_short)){
+		if(sensor_get_value(SENSOR_OBJECT)<50)
+			motion_stop(mot_com_walk_fr_short);
+	}
 }
 
 public turnright180()
@@ -640,21 +676,20 @@ public lean_back()
 }
 
 public knockover(){
-	while(objlatch){
 		walkforward();
 		if(!(object_check())){
-			objlatch=0;
+			
 			//scan();
 			
 		}
-	}
 }
+
 
 public scan(){
 	//while(sensor_get_value(SENSOR_OBJECT)<75){
 		
 		scan_fail++;
-		
+		objlatch=0;
 		if(state_mach==1)
 			motion_play(mot_scan_lf);
 		if(state_mach==2)
