@@ -62,6 +62,7 @@ public zero_in();
 public walk_fs_across();
 public pivot_right();
 public pivot_left();
+public batterycheck();
 //public soc_stand();
 
 
@@ -87,8 +88,8 @@ new scan_count = 0;
 new scan_fail = 0;
 
 public main()
-{
-	
+{	
+	batterycheck();
     print("main::main() enter\n");
 	
 	if (testflag)
@@ -334,14 +335,14 @@ public zero_in()
 		if(obj_angle>=5){
 			sound_play(snd_right);
 			while(sound_is_playing(snd_right)){}
-			///turnrightshort();
-			pivot_right();
+			turnrightshort();
+			//pivot_right();
 		}
 		else if(obj_angle<=-5){
 			sound_play(snd_left);
 			while(sound_is_playing(snd_right)){}
-			//turnleftshort();
-			pivot_left();
+			turnleftshort();
+			//pivot_left();
 		}
 		
 		else{
@@ -766,6 +767,18 @@ public test_sensors()
 		
 }
 
+public batterycheck(){
+	
+	if(sensor_get_value(SENSOR_BATTERY)<=35)
+		sound_play(snd_battery_low);
+	
+	if(sensor_get_value(SENSOR_BATTERY)>35 && sensor_get_value(SENSOR_BATTERY)<=70)
+		sound_play(snd_battery_med);
+	
+	if(sensor_get_value(SENSOR_BATTERY)>70)
+		sound_play(snd_battery_high);
+
+}
 
 
 

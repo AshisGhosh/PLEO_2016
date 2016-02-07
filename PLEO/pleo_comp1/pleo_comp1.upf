@@ -42,6 +42,9 @@
 	<sound path="${SOUNDS}/scan_count_hit.wav" />
 	<sound path="${SOUNDS}/scan_fail_hit.wav" />
 	<sound path="${SOUNDS}/bite.wav" />
+	<sound path="${SOUNDS}/battery_low.wav" />
+	<sound path="${SOUNDS}/battery_med.wav" />
+	<sound path="${SOUNDS}/battery_high.wav" />
 	
 
 
