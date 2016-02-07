@@ -82,7 +82,7 @@ new obj_angle=0;
 // * Develop confirmation of objects knocked down
 
 
-new testflag =1;
+new testflag =0;
 new state_mach = 1;
 new scan_count = 0;
 new scan_fail = 0;
@@ -133,6 +133,7 @@ public main()
 		joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
 		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 		sound_play(snd_beep);
+		while(sound_is_playing(snd_beep)){}
 		joint_move_to(JOINT_NECK_VERTICAL, -45, 200, angle_degrees );
 		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 		
@@ -159,9 +160,8 @@ public main()
 		while(sound_is_playing(snd_state_two)){}
 		
 		sound_play(snd_beep);
-		sound_play(snd_beep);
-		sound_play(snd_beep);
-		sound_play(snd_beep);
+		while(sound_is_playing(snd_beep)){}
+		
 		backleft();
 		backright();
 		turnleftshort();
@@ -332,14 +332,14 @@ public zero_in()
 		if(obj_angle>=2){
 			sound_play(snd_right);
 			while(sound_is_playing(snd_right)){}
-			//turnrightshort();
-			pivot_right();
+			turnrightshort();
+			//pivot_right();
 		}
 		else if(obj_angle<=-2){
 			sound_play(snd_left);
 			while(sound_is_playing(snd_right)){}
-			//turnleftshort();
-			pivot_left();
+			turnleftshort();
+			//pivot_left();
 		}
 		
 		else{
@@ -347,6 +347,7 @@ public zero_in()
 			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 			joint_move_to(JOINT_NECK_VERTICAL, 0, 200, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+			
 			if(sensor_get_value(SENSOR_OBJECT)>=68){
 				sound_play(snd_ahead);
 				while(sound_is_playing(snd_ahead)){}
@@ -473,6 +474,8 @@ public walk_fs_hdr_across()
 				motion_stop(mot_com_walk_fs_hdr);
 				joint_move_to(JOINT_NECK_HORIZONTAL, -10, 200, angle_degrees );
 				while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				joint_move_to(JOINT_NECK_VERTICAL, -40, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 				if(sensor_get_value(SENSOR_OBJECT>35)){	
 					turnleftshort_hd();
 					hdr();
@@ -551,6 +554,10 @@ public turnleftscan()
 			}*/
 		}
 	}
+	joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
+	while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+	joint_move_to(JOINT_NECK_VERTICAL, 10, 200, angle_degrees );
+	while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 }
 
 public turnleft_find(){
@@ -755,7 +762,8 @@ public scan(){
 			motion_play(mot_scan_rf);
 		while(motion_is_playing(mot_scan_lf)||motion_is_playing(mot_scan_rf)){	
 			joint_move_to(JOINT_NECK_VERTICAL, 15, 200, angle_degrees );
-			if(((sensor_get_value(SENSOR_OBJECT)>=10)&&state_mach==1) || ((sensor_get_value(SENSOR_OBJECT)>=10)&&state_mach==2))
+
+			if(((sensor_get_value(SENSOR_OBJECT)>=60)&&state_mach==1) || ((sensor_get_value(SENSOR_OBJECT)>=60)&&state_mach==2))
 			{
 				obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
 				motion_stop(mot_scan_lf);
@@ -769,6 +777,57 @@ public scan(){
 		}
 	//}
 }
+
+/*
+public scan()
+{
+	scan_fail++;
+	objlatch=0;
+	
+	joint_move_to(JOINT_NECK_VERTICAL, 13, 200, angle_degrees );
+	while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+
+
+	joint_move_to(JOINT_NECK_HORIZONTAL, -65, 200, angle_degrees );
+	while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+
+
+	if (state_mach==1){
+		new k =-65;
+		while(k<=65){
+			joint_move_to(JOINT_NECK_HORIZONTAL, k, 100, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				k++;
+			if(sensor_get_value(SENSOR_OBJECT)>20){
+				obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
+				scan_count++;
+				scan_fail = 0;
+				objlatch = 1;
+				return 1;
+			}
+		}
+	}
+		
+	if (state_mach==2){
+		new k = 65;
+
+		while(k>=-65){
+			joint_move_to(JOINT_NECK_HORIZONTAL, k, 100, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				k--;
+			if(sensor_get_value(SENSOR_OBJECT)>20){
+				obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
+				scan_count++;
+				scan_fail = 0;
+				objlatch = 1;
+				return 1;
+			}
+		}
+	}
+	
+	
+}
+*/
 
 public sweep_hdr(){
 	motion_play(mot_sweep_right);
@@ -809,19 +868,19 @@ public test_sensors()
 
 public batterycheck(){
 	
-	if(sensor_get_value(SENSOR_BATTERY)<=35){
-		sound_play(snd_battery_low);
-		while(sound_is_playing(snd_battery_low)){}
+	if(sensor_get_value(SENSOR_BATTERY)>=70){
+		sound_play(snd_battery_high);
+		while(sound_is_playing(snd_battery_high)){}
 	}
 	
-	if(sensor_get_value(SENSOR_BATTERY)>35 && sensor_get_value(SENSOR_BATTERY)<=70){
+	else if(sensor_get_value(SENSOR_BATTERY)>=35){
 		sound_play(snd_battery_med);
 		while(sound_is_playing(snd_battery_med)){}
 	}
 	
-	if(sensor_get_value(SENSOR_BATTERY)>70){
-		sound_play(snd_battery_high);
-		while(sound_is_playing(snd_battery_high)){}
+	else{
+		sound_play(snd_battery_low);
+		while(sound_is_playing(snd_battery_low)){}
 	}
 
 }
