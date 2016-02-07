@@ -42,11 +42,6 @@ public on_sensor(time, sensor_name: sensor, value)
 			sound_play(snd_1p1_honk04);
 		}
 		
-	case SENSOR_OBJECT:
-		if (value >=98)
-		{
-					
-		}
 
 	case SENSOR_SOUND_LOUD:
 		if (value){

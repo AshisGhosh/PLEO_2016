@@ -18,4 +18,5 @@
   <e id=" 4115" name="battery_low" />
   <e id=" 4116" name="battery_med" />
   <e id=" 4117" name="battery_high" />
+  <e id=" 4118" name="scan_start" />
 </enum>

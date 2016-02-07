@@ -27,5 +27,6 @@ enum sound_name {
   snd_battery_low    =  4115,
   snd_battery_med    =  4116,
   snd_battery_high   =  4117,
+  snd_scan_start     =  4118,
   snd_max
 };

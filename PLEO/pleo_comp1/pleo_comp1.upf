@@ -45,6 +45,7 @@
 	<sound path="${SOUNDS}/battery_low.wav" />
 	<sound path="${SOUNDS}/battery_med.wav" />
 	<sound path="${SOUNDS}/battery_high.wav" />
+	<sound path="${SOUNDS}/scan_start.wav" />
 	
 
 
