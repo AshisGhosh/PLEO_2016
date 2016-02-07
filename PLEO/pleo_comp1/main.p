@@ -696,7 +696,7 @@ public scan(){
 			motion_play(mot_scan_rf);
 		while(motion_is_playing(mot_scan_lf)||motion_is_playing(mot_scan_rf)){	
 			joint_move_to(JOINT_NECK_VERTICAL, 15, 200, angle_degrees );
-			if(((sensor_get_value(SENSOR_OBJECT)>=68)&&state_mach==1) || ((sensor_get_value(SENSOR_OBJECT)>=70)&&state_mach==2))
+			if(((sensor_get_value(SENSOR_OBJECT)>=68)&&state_mach==1) || ((sensor_get_value(SENSOR_OBJECT)>=60)&&state_mach==2))
 			{
 				obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
 				motion_stop(mot_scan_lf);
