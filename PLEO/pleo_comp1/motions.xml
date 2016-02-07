@@ -23,6 +23,15 @@
   <e id=" 8218" name="walk_straight" />
   <e id=" 8219" name="com_walk_fs1" />
   <e id=" 8220" name="com_walk_fs2" />
-  <e id=" 8221" name="scan" />
   <e id=" 8222" name="com_walk_fs_hd_edited" />
+  <e id=" 8224" name="pivot_right" />
+  <e id=" 8225" name="scan_lf" />
+  <e id=" 8226" name="pivot_test" />
+  <e id=" 8227" name="pivot_booty" />
+  <e id=" 8228" name="test_walk_DM" />
+  <e id=" 8229" name="walk_straight_hd" />
+  <e id=" 8230" name="scan_rf" />
+  <e id=" 8231" name="walk_straight_hdr" />
+  <e id=" 8232" name="com_walk_fl_hd" />
+  <e id=" 8233" name="pivot_left" />
 </enum>

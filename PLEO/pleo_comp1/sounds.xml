@@ -1,4 +1,21 @@
 <enum max="32767" min="4096" name="sound" namesoff="true" short="snd">
   <e id=" 4099" name="growl" />
   <e id=" 4100" name="1p1_honk04" />
+  <e id=" 4101" name="fuck" />
+  <e id=" 4102" name="twitch" />
+  <e id=" 4103" name="beep" />
+  <e id=" 4104" name="left" />
+  <e id=" 4105" name="right" />
+  <e id=" 4106" name="ahead" />
+  <e id=" 4107" name="state_one" />
+  <e id=" 4108" name="state_two" />
+  <e id=" 4109" name="end_of_program" />
+  <e id=" 4110" name="going_across" />
+  <e id=" 4111" name="state_three" />
+  <e id=" 4112" name="scan_count_hit" />
+  <e id=" 4113" name="scan_fail_hit" />
+  <e id=" 4114" name="bite" />
+  <e id=" 4115" name="battery_low" />
+  <e id=" 4116" name="battery_med" />
+  <e id=" 4117" name="battery_high" />
 </enum>
