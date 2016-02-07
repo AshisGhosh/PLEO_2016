@@ -60,6 +60,8 @@ public turnleft_find();
 public turnright_find();
 public zero_in();
 public walk_fs_across();
+public pivot_right();
+public pivot_left();
 //public soc_stand();
 
 
@@ -329,15 +331,17 @@ public zero_in()
 	while(scan()){
 		//obj_angle=joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
 	
-		if(obj_angle>=2){
+		if(obj_angle>=5){
 			sound_play(snd_right);
 			while(sound_is_playing(snd_right)){}
-			turnrightshort();
+			///turnrightshort();
+			pivot_right();
 		}
-		else if(obj_angle<=-2){
+		else if(obj_angle<=-5){
 			sound_play(snd_left);
 			while(sound_is_playing(snd_right)){}
-			turnleftshort();
+			//turnleftshort();
+			pivot_left();
 		}
 		
 		else{
@@ -603,6 +607,20 @@ public backup()
 	motion_play(mot_com_walk_bs);
 	while(motion_is_playing(mot_com_walk_bs)){}
 }
+
+public pivot_right()
+{
+	motion_play(mot_pivot_right);
+	while(motion_is_playing(mot_pivot_right)){}
+}
+
+public pivot_left()
+{
+	motion_play(mot_pivot_left);
+	while(motion_is_playing(mot_pivot_left)){}
+}
+
+
 
 public wag()
 {
