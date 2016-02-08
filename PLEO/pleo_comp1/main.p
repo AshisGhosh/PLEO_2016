@@ -359,19 +359,19 @@ public zero_in()
 		if(sensor_get_value(SENSOR_OBJECT)>=98){
 			sound_play(snd_beep);
 			while(sound_is_playing(snd_beep)){}
-			joint_move_to(JOINT_NECK_HORIZONTAL,-65,300,angle_degrees);
-			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-			joint_move_to(JOINT_NECK_HORIZONTAL,65,300,angle_degrees);
-			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+			//joint_move_to(JOINT_NECK_HORIZONTAL,-65,300,angle_degrees);
+			//while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+			//joint_move_to(JOINT_NECK_HORIZONTAL,65,300,angle_degrees);
+			//while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 		}
 	
-		if(obj_angle>=10){
+		if(obj_angle>=15){
 			sound_play(snd_right);
 			while(sound_is_playing(snd_right)){}
 			turnrightshort_scan();
 			//pivot_right();
 		}
-		else if(obj_angle<=-10){
+		else if(obj_angle<=-15){
 			sound_play(snd_left);
 			while(sound_is_playing(snd_right)){}
 			turnleftshort_scan();
@@ -510,6 +510,7 @@ public walk_fs_hdr_across()
 {
 	
 	new walkcount=0;
+	new walkcheck = 10;
 	while(sensor_get_value(SENSOR_OBJECT)>=25){
 		
 		joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
@@ -526,12 +527,16 @@ public walk_fs_hdr_across()
 				joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
 				while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 					
-				if(sensor_get_value(SENSOR_OBJECT)<10)
+				if((sensor_get_value(SENSOR_OBJECT)<10)&&(walkcount>=walkcheck))
 					break;
 				
 				
 				turnleftshort_hd();
 				turnrightshort_hd();
+				joint_move_to(JOINT_NECK_HORIZONTAL, -20, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				joint_move_to(JOINT_NECK_VERTICAL, -70, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_VERTICAL)){sleep;}
 				
 				walkcount++;				
 					//hdr();
@@ -541,7 +546,7 @@ public walk_fs_hdr_across()
 		}
 		
 		
-		if (walkcount>=6){
+		if (walkcount>=walkcheck){
 			joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 			joint_move_to(JOINT_NECK_VERTICAL, -70, 200, angle_degrees );
@@ -909,7 +914,7 @@ public scan()
 		return 1;
 	}
 	
-	joint_move_to(JOINT_NECK_VERTICAL,20,200,angle_degrees);
+	joint_move_to(JOINT_NECK_VERTICAL,13,200,angle_degrees);
 	while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 	joint_move_to(JOINT_NECK_HORIZONTAL, 0, 100, angle_degrees );
 	while(joint_is_moving(JOINT_NECK_HORIZONTAL)){sleep;}
