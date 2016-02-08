@@ -183,7 +183,7 @@ public main()
 		while(1){
 			zero_in();
 			if(direction){
-				backright();
+				backup();
 				direction=0;
 			}
 			else{
@@ -356,6 +356,14 @@ public zero_in()
 {
 	while(scan()){
 		//obj_angle=joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
+		if(sensor_get_value(SENSOR_OBJECT)>=98){
+			sound_play(snd_beep);
+			while(sound_is_playing(snd_beep)){}
+			joint_move_to(JOINT_NECK_HORIZONTAL,-65,300,angle_degrees);
+			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+			joint_move_to(JOINT_NECK_HORIZONTAL,65,300,angle_degrees);
+			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+		}
 	
 		if(obj_angle>=10){
 			sound_play(snd_right);
@@ -518,7 +526,7 @@ public walk_fs_hdr_across()
 				joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
 				while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 					
-				if(sensor_get_value(SENSOR_OBJECT)<25)
+				if(sensor_get_value(SENSOR_OBJECT)<10)
 					break;
 				
 				
