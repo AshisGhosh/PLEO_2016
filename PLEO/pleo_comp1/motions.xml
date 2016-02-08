@@ -34,4 +34,5 @@
   <e id=" 8231" name="walk_straight_hdr" />
   <e id=" 8232" name="com_walk_fl_hd" />
   <e id=" 8233" name="pivot_left" />
+  <e id=" 8234" name="home" />
 </enum>

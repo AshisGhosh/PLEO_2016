@@ -43,5 +43,6 @@ enum motion_name {
   mot_walk_straight_hdr     =  8231,
   mot_com_walk_fl_hd        =  8232,
   mot_pivot_left            =  8233,
+  mot_home                  =  8234,
   mot_max
 };
