@@ -1,11 +1,8 @@
-//
 // Very simple main script. Fill in logic in the main function.
-//
- 
+
 // save space by packing all strings
 #pragma pack 1
-
-// 
+ 
 #include <Log.inc>
 #include <Script.inc>
 #include <Sensor.inc>
@@ -17,9 +14,6 @@
 #include <Util.inc>
 #include <Time.inc>
 
-
-
-
 public init()
 {
     print("main::init() enter\n");
@@ -27,51 +21,54 @@ public init()
     print("main::init() exit\n");
 }
 
+//all commented out functions are not used at the moment
+public backleft();
+public backright();
+public backup();
+public backupshort();
+public batterycheck();
+public edge_check();
+public hdr();
+//public hdr_check();
+//public headleft();
+//public headright();
 public home();
-public walkforward();    //standard walk forward function
-public walkforward_scan();
-public walk_fs_hd();
-public walk_fs_hdr();
-public wag();
-public walk_fr_2();
-public walk_fl_s();
+//public knockover();
+//public lean_back();
+public object_check();
+public pivot_left();
+public pivot_right();
+public scan();
+//public soc_stand();
+public sweep_hdr();
 public test_sensors();
-public headright();
-public headleft();
 public turnleft();
+//public turnleft_find();
 public turnleftscan();
 public turnleftshort();
-public turnleftshort_scan();
 public turnleftshort_hd();
+public turnleftshort_scan();
 public turnright();
-public turnrightshort();
-public turnrightshort_scan();
-public turnright180();
-public lean_back();
-public backright();
-public backleft();
-public backup();
-public hdr_check();
-public edge_check();
-public object_check();
-public hdr();
-public knockover();
-public sweep_hdr();
-public turnleft_find();
 public turnright_find();
+//public turnright180();
+public turnrightshort();
+public turnrightshort_hd();
+public turnrightshort_scan();
+public turnto(); //UNDECLARED
+public wag();
+//public walk_fl_s();
+//public walk_fr_2();
+//public walk_fs_across(); 
+//public walk_fs_hd();
+//public walk_fs_hd1();
+//public walk_fs_hdr();
+public walk_fs_hdr_across();
+public walkforward();    //standard walk forward function
+public walkforward_scan();
 public zero_in();
-public walk_fs_across();
-public pivot_right();
-public pivot_left();
-public batterycheck();
-//public soc_stand();
-
-
 
 new objlatch=0;
 new obj_angle=0;
-
-
 
 //TODO:
 // * Calibrate forward movement. Convert one motion to cm
@@ -97,8 +94,7 @@ public main()
 		goto testcode;
     
 //MAIN COMPETITION CODE	
-	
-	
+		
 	//STATE1: Start left
 	if (state_mach==1){
 		sound_play(snd_state_one);
@@ -109,16 +105,11 @@ public main()
 		
 		//start turning towards first object
 		turnleftscan();
-		
-		
 		//walkforward();
 		//sound_play(snd_beep);
-		
 		//call function to home in on object using neck scanning and identifying position
 		//object knocked over as soon as not picked up in a single scan
-		
-		
-		
+				
 		zero_in();
 		if(!objlatch){
 			sound_play(snd_bite);
@@ -233,13 +224,10 @@ public main()
 		while(!scan())
 			turnrightshort();
 		zero_in();
-		
 		wag();
 		wag();
-		
 	}
-	
-		
+			
 //TESTING CODE:	
 	if (testflag){
 		
@@ -405,7 +393,9 @@ public zero_in()
 	
 }
 
-public turnto()
+
+//NOT USED CURRENTLY
+/*public turnto()
 {
 	while(scan()){
 		if(obj_angle>=15){
@@ -445,7 +435,7 @@ public turnto()
 		joint_move_to(JOINT_NECK_VERTICAL, 0, 200, angle_degrees );
 		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 	}
-}
+}*/
 
 public walkforward()
 {
@@ -467,7 +457,8 @@ public walkforward_scan()
 					
 }
 
-public walk_fs_across()
+//NOT CURRENTLY USED
+/* public walk_fs_across()
 {
 				//objlatch=1;
             	motion_play(mot_walk_straight_hd);
@@ -481,9 +472,10 @@ public walk_fs_across()
 					}
 				}
 					
-}
+} */
 
-public walk_fs_hd()
+//NOT USED CURRENTLY
+/* public walk_fs_hd()
 {
 	    while(sensor_get_value(SENSOR_EDGE_IN_FRONT)==0){
 
@@ -498,13 +490,15 @@ public walk_fs_hd()
 					}
 					
 		 }	
-}
+} */
 
-public walk_fs_hdr()
+//NOT USED CURRENTLY
+/* public walk_fs_hdr()
 {
 	motion_play(mot_com_walk_fs_hdr);
 	while(motion_is_playing(mot_com_walk_fs_hdr)){}
 }
+ */
 
 public walk_fs_hdr_across()
 {
@@ -557,14 +551,15 @@ public walk_fs_hdr_across()
 	return 0;
 }
 
-public walk_fs_hdl()
+//NOT USED CURRENTLY
+/* public walk_fs_hdl()
 {
 	motion_play(mot_com_walk_fs_hdl);
 	while(motion_is_playing(mot_com_walk_fs_hdl)){}
-}
+} */
 
-
-public walk_fr_2()
+//NOT USED CURRENTLY.
+/* public walk_fr_2()
 {
 	    while(sensor_get_value(SENSOR_OBJECT)<=75){
 
@@ -578,9 +573,10 @@ public walk_fr_2()
 					}
 					
 		 }
-}
+} */
 
-public walk_fl_s()
+//NOT CURRENTLY USED
+/* public walk_fl_s()
 {
 	    while(sensor_get_value(SENSOR_OBJECT)<=95){
 
@@ -595,7 +591,9 @@ public walk_fl_s()
 					
 		 }
 }
+ */
 
+ 
 public turnleft()
 {
 	motion_play(mot_com_walk_fl_2a);
@@ -625,7 +623,8 @@ public turnleftscan()
 	while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 }
 
-public turnleft_find(){
+//NOT CURRENTLY USED
+/* public turnleft_find(){
 	sound_play(snd_growl);
 	motion_play(mot_com_walk_fl_short)
 	while(motion_is_playing(mot_com_walk_fl_short)){
@@ -635,7 +634,8 @@ public turnleft_find(){
 			//turnright_find();
 		}
 	}	
-}
+} */
+
 public turnleftshort()
 {
 	motion_play(mot_com_walk_fl_short)
@@ -723,13 +723,15 @@ public turnrightshort_scan()
 	joint_control(JOINT_NECK_VERTICAL,0);
 }
 
-public turnright180()
+//NOT CURRENTLY USED
+/* public turnright180()
 {
 	for(new count=0; count<4; count++)
 		turnright();
 }
+ */
 
-public backleft()
+ public backleft()
 {
 	motion_play(mot_com_walk_bl_2a);
 	while(motion_is_playing(mot_com_walk_bl_2a)){}
@@ -776,7 +778,6 @@ public pivot_left()
 }
 
 
-
 public wag()
 {
 	for (new i=0; i<1 ;i++)
@@ -786,16 +787,19 @@ public wag()
 	}
 }
 
-public headright()
+//CURRENTLY NOT USED
+/* public headright()
 {
 	motion_play(mot_headright);
 	while(motion_is_playing(mot_headright)){}
-}
-public headleft()
+} */
+
+//CURRENTLY NOT USED
+/* public headleft()
 {
 	motion_play(mot_headleft);
 	while(motion_is_playing(mot_headleft)){}
-}
+} */
 
 public hdr()
 {
@@ -806,7 +810,8 @@ public hdr()
 	}
 }
 
-public hdr_check()
+//CURRENTLY NOT USED
+/* public hdr_check()
 {
 	motion_play(mot_headdownright);
 	while(motion_is_playing(mot_headdownright)){
@@ -816,8 +821,9 @@ public hdr_check()
 						}
 	
 	}
-}
+} */
 
+//currently not used
 /*public edge_check()
 {
 	while(sensor_get_value(SENSOR_OBJECT)>=25){
@@ -843,13 +849,16 @@ public object_check()
 		return 1;
 	}
 }
-public lean_back()
+
+//not used
+/* public lean_back()
 {
 	motion_play(mot_lean_back);
 	while(motion_is_playing(mot_lean_back)){}
-}
+} */
 
-public knockover(){
+//not used
+/* public knockover(){
 		walkforward();
 		if(!(object_check())){
 			
@@ -857,7 +866,7 @@ public knockover(){
 			
 		}
 }
-
+ */
 
 /*public scan(){
 	//while(sensor_get_value(SENSOR_OBJECT)<75){
@@ -972,13 +981,6 @@ public sweep_hdr(){
 	}
 }
 
-
-/*public soc_stand()
-{
-	motion_play(mot_soc_stand_c);
-	while(motion_is_playing(mot_soc_stand_c)){}
-}*/
-
 public test_sensors()
 {
 //SENSOR TESTING
@@ -1001,7 +1003,8 @@ public test_sensors()
 		
 }
 
-public batterycheck(){
+public batterycheck()
+{
 	
 	if(sensor_get_value(SENSOR_BATTERY)>=70){
 		sound_play(snd_battery_high);
@@ -1019,10 +1022,3 @@ public batterycheck(){
 	}
 
 }
-
-
-
-
-
-
-
