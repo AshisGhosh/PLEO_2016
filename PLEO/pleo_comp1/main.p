@@ -351,27 +351,21 @@ public home()
 public zero_in()
 {
 	while(scan()){
-		//obj_angle=joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
+
 		if(sensor_get_value(SENSOR_OBJECT)>=98){
 			sound_play(snd_beep);
 			while(sound_is_playing(snd_beep)){}
-			//joint_move_to(JOINT_NECK_HORIZONTAL,-65,300,angle_degrees);
-			//while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-			//joint_move_to(JOINT_NECK_HORIZONTAL,65,300,angle_degrees);
-			//while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 		}
 	
 		if(obj_angle>=15){
 			sound_play(snd_right);
 			while(sound_is_playing(snd_right)){}
 			turnrightshort_scan();
-			//pivot_right();
 		}
 		else if(obj_angle<=-15){
 			sound_play(snd_left);
 			while(sound_is_playing(snd_right)){}
 			turnleftshort_scan();
-			//pivot_left();
 		}
 		
 		else{
@@ -386,66 +380,12 @@ public zero_in()
 				walkforward_scan();
 			}
 		}
-		
-		/*joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-		joint_move_to(JOINT_NECK_VERTICAL, 0, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_VERTICAL)){}*/
-		
-		obj_angle=0;
-		
-		
-	}
-	
-		
-	
-}
-
-public turnto()
-{
-	while(scan()){
-		if(obj_angle>=15){
-			sound_play(snd_right);
-			while(sound_is_playing(snd_right)){}
-			
-			pivot_right();
-			while(sensor_get_value(SENSOR_OBJECT)<=25)
-				pivot_right();
-			while(sensor_get_value(SENSOR_OBJECT)>25)
-				pivot_right();
-		}
-		else if(obj_angle<=-15){
-			sound_play(snd_left);
-			while(sound_is_playing(snd_left)){}
-			
-			pivot_left();
-			while(sensor_get_value(SENSOR_OBJECT)<=25)
-				pivot_left();
-			while(sensor_get_value(SENSOR_OBJECT)>25)
-				pivot_left();
-		}
-		
-		joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-		joint_move_to(JOINT_NECK_VERTICAL, 0, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
-		
-		if(sensor_get_value(SENSOR_OBJECT)>60){
-			sound_play(snd_ahead);
-			while(sound_is_playing(snd_ahead)){}
-			walkforward();
-		}
-		
-		joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-		joint_move_to(JOINT_NECK_VERTICAL, 0, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+		obj_angle=0;	
 	}
 }
 
 public walkforward()
 {
-				//objlatch=1;
     motion_play(mot_walk_straight);
 	while (motion_is_playing(mot_walk_straight)){}
 					
@@ -453,7 +393,6 @@ public walkforward()
 
 public walkforward_scan()
 {
-	//objlatch=1;
     motion_play(mot_walk_straight);
 	while (motion_is_playing(mot_walk_straight)){
 					
@@ -461,52 +400,6 @@ public walkforward_scan()
 			motion_stop(mot_walk_straight);
 	}
 					
-}
-
-public walk_fs_across()
-{
-				//objlatch=1;
-            	motion_play(mot_walk_straight_hd);
-				while (motion_is_playing(mot_walk_straight_hd)){
-					
-					if(sensor_get_value(SENSOR_OBJECT)<=25){
-						sound_play(snd_1p1_honk04);
-						motion_stop(mot_walk_straight_hd);
-						return 1;
-						
-					}
-				}
-					
-}
-
-public walk_fs_hd()
-{
-	    while(sensor_get_value(SENSOR_EDGE_IN_FRONT)==0){
-
-            	motion_play(mot_com_walk_fs_hd);
-				while (motion_is_playing(mot_com_walk_fs_hd))
-         			{
-              			if(sensor_get_value(SENSOR_EDGE_IN_FRONT)==1){
-							motion_stop(mot_com_walk_fs_hd);
-							sound_play(snd_growl);
-							return 1;
-							}
-					}
-					
-		 }	
-}
-
-public walk_fs_hdr()
-{
-	motion_play(mot_com_walk_fs_hdr);
-	while(motion_is_playing(mot_com_walk_fs_hdr)){
-		if(sensor_get_value(SENSOR_OBJECT)<=25){
-			motion_stop(mot_com_walk_fs_hdr);
-			sound_play(snd_1p1_honk04);
-			while(sound_is_playing(snd_1p1_honk04)){}
-			return 1;
-		}
-	}
 }
 
 public walk_fs_hdr_across()
@@ -542,7 +435,7 @@ public walk_fs_hdr_across()
 				while(joint_is_moving(JOINT_NECK_VERTICAL)){sleep;}
 				
 				walkcount++;				
-					//hdr();
+
 			}
 						
 			
@@ -559,10 +452,13 @@ public walk_fs_hdr_across()
 	}	
 	return 0;
 }
-public walk_fs_hdr_edge()
+
+//Modded walk_fs_hdr_across version for second line of movement
+public walk_fs_hdr_across2()
 {
 	
-
+	new walkcount=0;
+	new walkcheck = 6;
 	while(sensor_get_value(SENSOR_OBJECT)>=25){
 		
 		joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
@@ -573,73 +469,44 @@ public walk_fs_hdr_edge()
         {
            	if(sensor_get_value(SENSOR_OBJECT)<=25){
 				motion_stop(mot_com_walk_fs_hdr);
-	
+				
+				joint_move_to(JOINT_NECK_HORIZONTAL, -35, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+					
+				if((sensor_get_value(SENSOR_OBJECT)<10)&&(walkcount>=walkcheck))
+					break;
+				
+				
 				turnleftshort_hd();
 				turnrightshort_hd();
-		
-					//hdr();
+				joint_move_to(JOINT_NECK_HORIZONTAL, -20, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				joint_move_to(JOINT_NECK_VERTICAL, -70, 200, angle_degrees );
+				while(joint_is_moving(JOINT_NECK_VERTICAL)){sleep;}
+
 			}
+						
+			
+		}
+		walkcount++;
+		
+		if (walkcount>=walkcheck){
+			joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+			joint_move_to(JOINT_NECK_VERTICAL, -70, 200, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_VERTICAL)){sleep;}
+			if(scan())
+				break;
+		}
 					
-		}
-		
-		joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-		joint_move_to(JOINT_NECK_VERTICAL, 10, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_VERTICAL)){sleep;}	
-		
-		if(sensor_get_value(SENSOR_OBJECT)>=75){
-			motion_stop(mot_com_walk_fs_hdr);
-			break;
-		}
-		
-		joint_move_to(JOINT_NECK_HORIZONTAL, -20, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-		joint_move_to(JOINT_NECK_VERTICAL, -70, 200, angle_degrees );
-		while(joint_is_moving(JOINT_NECK_VERTICAL)){sleep;}	
-							
 	}	
 	return 0;
 }
 
-public walk_fs_hdl()
-{
-	motion_play(mot_com_walk_fs_hdl);
-	while(motion_is_playing(mot_com_walk_fs_hdl)){}
-}
 
-
-public walk_fr_2()
-{
-	    while(sensor_get_value(SENSOR_OBJECT)<=75){
-
-            	motion_play(mot_com_walk_fr_2a);
-				while (motion_is_playing(mot_com_walk_fr_2a))
-         			{
-              			if(sensor_get_value(SENSOR_OBJECT)>=75){
-							motion_stop(mot_com_walk_fr_2a);
-							sound_play(snd_growl);
-							}
-					}
-					
-		 }
-}
-
-public walk_fl_s()
-{
-	    while(sensor_get_value(SENSOR_OBJECT)<=95){
-
-            	motion_play(mot_com_walk_fl_short);
-				while (motion_is_playing(mot_com_walk_fl_short))
-         			{
-              			if(sensor_get_value(SENSOR_OBJECT)>=95){
-							motion_stop(mot_com_walk_fl_short);
-							sound_play(snd_growl);
-							}
-					}
-					
-		 }
-}
-
+ 
 public turnleft()
 {
 	motion_play(mot_com_walk_fl_2a);
@@ -655,12 +522,6 @@ public turnleftscan()
 				objlatch = 1;
 				motion_stop(mot_com_walk_fl_2a);
 			}
-			/*if (!(object_check())&&(objlatch)){
-				motion_stop(mot_com_walk_fl_2a);
-				sound_play(snd_growl);
-				return 1;
-				
-			}*/
 		}
 	}
 	joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
@@ -669,17 +530,7 @@ public turnleftscan()
 	while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 }
 
-public turnleft_find(){
-	sound_play(snd_growl);
-	motion_play(mot_com_walk_fl_short)
-	while(motion_is_playing(mot_com_walk_fl_short)){
-		if(!(object_check())){
-			motion_stop(mot_com_walk_fl_short);
-			//objlatch=0;
-			//turnright_find();
-		}
-	}	
-}
+
 public turnleftshort()
 {
 	motion_play(mot_com_walk_fl_short)
@@ -718,9 +569,7 @@ public turnright_find(){
 	sound_play(snd_growl);
 	motion_play(mot_com_walk_fr_short)
 	while(motion_is_playing(mot_com_walk_fr_short)){
-		/*if(!(object_check())){
-			motion_stop(mot_com_walk_fr_short);
-		}*/
+
 	}	
 }
 
@@ -767,13 +616,8 @@ public turnrightshort_scan()
 	joint_control(JOINT_NECK_VERTICAL,0);
 }
 
-public turnright180()
-{
-	for(new count=0; count<4; count++)
-		turnright();
-}
 
-public backleft()
+ public backleft()
 {
 	motion_play(mot_com_walk_bl_2a);
 	while(motion_is_playing(mot_com_walk_bl_2a)){}
@@ -820,7 +664,6 @@ public pivot_left()
 }
 
 
-
 public wag()
 {
 	for (new i=0; i<1 ;i++)
@@ -830,44 +673,14 @@ public wag()
 	}
 }
 
-public headright()
-{
-	motion_play(mot_headright);
-	while(motion_is_playing(mot_headright)){}
-}
-public headleft()
-{
-	motion_play(mot_headleft);
-	while(motion_is_playing(mot_headleft)){}
-}
-
 public hdr()
 {
 	motion_play(mot_headdownright);
 	while(motion_is_playing(mot_headdownright)){
-		/*if(edge_check())
-			motion_stop(mot_headdownright);*/
+
 	}
 }
 
-public hdr_check()
-{
-	motion_play(mot_headdownright);
-	while(motion_is_playing(mot_headdownright)){
-		if(sensor_get_value(SENSOR_OBJECT)<=25){
-							//motion_stop(mot_com_walk_fl_short);
-							sound_play(snd_growl);
-						}
-	
-	}
-}
-
-/*public edge_check()
-{
-	while(sensor_get_value(SENSOR_OBJECT)>=25){
-							sound_play(snd_growl);
-						}
-}*/
 
 public edge_check()
 {
@@ -883,78 +696,21 @@ public object_check()
 {       
 	if(sensor_get_value(SENSOR_OBJECT)>=92)
 	{
-		//sound_play(snd_1p1_honk04);
 		return 1;
 	}
 }
-public lean_back()
-{
-	motion_play(mot_lean_back);
-	while(motion_is_playing(mot_lean_back)){}
-}
-
-public knockover(){
-		walkforward();
-		if(!(object_check())){
-			
-			//scan();
-			
-		}
-}
-
-
-/*public scan(){
-	//while(sensor_get_value(SENSOR_OBJECT)<75){
-		
-		scan_fail++;
-		
-		if(state_mach==1)
-			motion_play(mot_scan_lf);
-		if(state_mach==2)
-			motion_play(mot_scan_rf);
-		while(motion_is_playing(mot_scan_lf)||motion_is_playing(mot_scan_rf)){
-			joint_control(JOINT_NECK_VERTICAL,1);
-			joint_move_to(JOINT_NECK_VERTICAL, 15, 200, angle_degrees );
-
-			if(((sensor_get_value(SENSOR_OBJECT)>=10)&&state_mach==1) || ((sensor_get_value(SENSOR_OBJECT)>=10)&&state_mach==2))
-			{
-				obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
-				motion_stop(mot_scan_lf);
-				motion_stop(mot_scan_rf);
-				while(joint_is_moving(JOINT_NECK_VERTICAL)){}
-				joint_control(JOINT_NECK_VERTICAL,0);
-
-				//sound_play(snd_1p1_honk04);	
-				objlatch=1;
-				scan_fail=0;
-				scan_count++;
-				return 1;
-			}
-			
-			if(objlatch)
-				backupshort();
-
-			objlatch=0;
-			
-		}
-	//}
-}*/
-
 
 public scan()
 {
 	
 	joint_control(JOINT_NECK_HORIZONTAL,1);
-	home();
+	//home();
 	joint_control(JOINT_NECK_HORIZONTAL,0);
 	
 	scan_fail++;
 	
-	joint_move_to(JOINT_NECK_HORIZONTAL, joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees)-5, 100, angle_degrees );
-	while(joint_is_moving(JOINT_NECK_HORIZONTAL)){sleep;}
-	
 	if(sensor_get_value(SENSOR_OBJECT)>25){
-		obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees)+5;
+		obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
 		scan_count++;
 		scan_fail = 0;
 		objlatch = 1;
@@ -979,7 +735,7 @@ public scan()
 		while(k<=65){
 			joint_move_to(JOINT_NECK_HORIZONTAL, k, 100, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-				k+=2;
+				k++;
 			if(sensor_get_value(SENSOR_OBJECT)>25){
 				obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
 				scan_count++;
@@ -996,7 +752,7 @@ public scan()
 		while(k>=-65){
 			joint_move_to(JOINT_NECK_HORIZONTAL, k, 100, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
-				k-=2;
+				k--;
 			if(sensor_get_value(SENSOR_OBJECT)>25){
 				obj_angle = joint_get_position(JOINT_NECK_HORIZONTAL, angle_degrees);
 				scan_count++;
@@ -1019,36 +775,8 @@ public sweep_hdr(){
 	}
 }
 
-
-/*public soc_stand()
+public batterycheck()
 {
-	motion_play(mot_soc_stand_c);
-	while(motion_is_playing(mot_soc_stand_c)){}
-}*/
-
-public test_sensors()
-{
-//SENSOR TESTING
-	while(1){
-		if(sensor_get_value(SENSOR_OBJECT_IN_FRONT)==1)
-			sound_play(snd_growl);
-		if(sensor_get_value(SENSOR_OBJECT_ON_RIGHT)==1)
-			sound_play(snd_growl);
-		if(sensor_get_value(SENSOR_OBJECT_ON_LEFT)==1)
-			sound_play(snd_growl);
-		if(sensor_get_value(SENSOR_PICKED_UP)==1)
-			sound_play(snd_growl);
-		if(sensor_get_value(SENSOR_SOUND_LOUD_CHANGE)==1)
-			sound_play(snd_growl);
-		if(sensor_get_value(SENSOR_OBJECT)>=50)
-			sound_play(snd_growl);
-		if(sensor_get_value(SENSOR_EDGE_IN_FRONT)==1)
-			sound_play(snd_growl);
-	}
-		
-}
-
-public batterycheck(){
 	
 	if(sensor_get_value(SENSOR_BATTERY)>=70){
 		sound_play(snd_battery_high);
@@ -1066,10 +794,3 @@ public batterycheck(){
 	}
 
 }
-
-
-
-
-
-
-
