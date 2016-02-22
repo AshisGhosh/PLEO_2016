@@ -43,11 +43,6 @@ public on_sensor(time, sensor_name: sensor, value)
 		}
 		
 
-	case SENSOR_SOUND_LOUD:
-		if (value){
-			
-			
-		}
     }
     
 	// reset sensor trigger
