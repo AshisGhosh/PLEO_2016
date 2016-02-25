@@ -116,8 +116,8 @@ public main()
 		}
 		
 		walkforward();
-		for(new i=0; i<3; i++)
-			turnright();
+		for(new i=0; i<6; i++)
+			turnrightshort();
 			
 		
 		joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
