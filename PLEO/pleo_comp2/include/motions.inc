@@ -45,5 +45,6 @@ enum motion_name {
   mot_pivot_left            =  8233,
   mot_home                  =  8234,
   mot_walk_straight_hdl     =  8235,
+  mot_tend_left             =  8236,
   mot_max
 };

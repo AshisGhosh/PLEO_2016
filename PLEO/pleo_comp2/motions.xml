@@ -36,4 +36,5 @@
   <e id=" 8233" name="pivot_left" />
   <e id=" 8234" name="home" />
   <e id=" 8235" name="walk_straight_hdl" />
+  <e id=" 8236" name="tend_left" />
 </enum>
