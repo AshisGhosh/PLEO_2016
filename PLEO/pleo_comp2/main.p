@@ -230,6 +230,7 @@ public main()
 	
 	testcode:
 		walk_fs_hdl_across();
+		
 		while(1){
 			if(sensor_get_value(SENSOR_CHEEKR)==1){
 				sound_play(snd_right);
@@ -366,11 +367,34 @@ public walkforward_hd_scan()
 //Walks accross the left side of table, same as above but different side.
 public walk_fs_hdl_across()
 {
-    joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
+    new edge=0, count_hdl=0;
+	
+	//assert dominance
+	joint_control(JOINT_NECK_VERTICAL,1);
+	joint_control(JOINT_NECK_HORIZONTAL,1);	
+	
+	joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
     while(joint_is_moving(JOINT_NECK_VERTICAL)){}
     joint_move_to(JOINT_NECK_HORIZONTAL, -50, 200, angle_degrees );
 	while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 
+	while(1){
+		motion_play(mot_walk_straight);
+		while(motion_is_playing(mot_walk_straight)){
+			if(sensor_get_value(SENSOR_OBJECT)<25){
+				motion_stop(mot_walk_straight);
+				edge=1;
+				turnrightshort_hdlscan();	
+				turnrightshort_hdlscan();
+			}
+		}
+		//if (edge)
+			//break;
+		
+		//count_hdl++;
+	}
+	
+	
 	for (new timer=0; timer<=5 ;timer++){
 	        if(sensor_get_value(SENSOR_OBJECT)<=25){
 	            motion_stop(mot_walk_straight_hdl);
@@ -379,7 +403,10 @@ public walk_fs_hdl_across()
             motion_play(mot_walk_straight_hdl);
             while(motion_is_playing(mot_walk_straight_hdl)){}
 	}
-	return
+	
+	joint_control(JOINT_NECK_VERTICAL,0);
+	joint_control(JOINT_NECK_HORIZONTAL,0);
+	
 }
 
 public walk_fs_hdr_across()
@@ -465,6 +492,8 @@ public turnleftshort()
 	while(motion_is_playing(mot_com_walk_fl_short)){}
 }
 
+
+
 public turnleftshort_scan()
 {
 	joint_control(JOINT_NECK_HORIZONTAL,1);
@@ -530,6 +559,20 @@ public turnrightshort_hd()
 		if(sensor_get_value(SENSOR_OBJECT)<15){
 			motion_stop(mot_com_walk_fr_short);
 			return 0;
+		}
+	}
+}
+
+public turnrightshort_hdlscan()
+{
+	joint_control(JOINT_NECK_HORIZONTAL,1);
+	joint_control(JOINT_NECK_VERTICAL,1);
+	
+	while(sensor_get_value(SENSOR_OBJECT)<25){
+		motion_play(mot_com_walk_fr_short);
+		while(motion_is_playing(mot_com_walk_fr_short)){
+			if(sensor_get_value(SENSOR_OBJECT)>=25)
+				motion_stop(mot_com_walk_fr_short);
 		}
 	}
 }
