@@ -73,6 +73,7 @@ new obj_angle=0;
 new objcount=0;
 
 new card=0;
+new acrosswalk=0;
 
 
 //TODO:
@@ -164,6 +165,7 @@ public main()
 		backup();
 		backup();
 		backup();
+		backup();
 		
 		if(flag_right){
 			for(new i=0; i<5; i++)
@@ -171,11 +173,11 @@ public main()
 		}
 		
 		if(flag_left){
-			for(new i=0; i<9; i++)
+			for(new i=0; i<8; i++)
 				turnleftshort();
 		}
 		
-		joint_move_to(JOINT_NECK_VERTICAL, -60, 200, angle_degrees );
+		joint_move_to(JOINT_NECK_VERTICAL, -45, 200, angle_degrees );
 		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 		
 		while(sensor_get_value(SENSOR_OBJECT)>20){
@@ -207,8 +209,19 @@ public main()
 			walk_fs_hdr_across();
 		}
 		
-		
+		while(1){
+			zero_in();
+			if(flag_right)
+				walk_fs_hdl_across();
+			if(flag_left)
+				walk_fs_hdr_across();
+			if (card)
+				break;
+		}
 	}
+	
+	sound_play(snd_end_of_program);
+	while(sound_is_playing(snd_end_of_program)){}
 		
 //************************************************************		
 //TESTING CODE:	
@@ -310,7 +323,8 @@ public zero_in()
 			if(sensor_get_value(SENSOR_OBJECT)>=25){
 				sound_play(snd_ahead);
 				while(sound_is_playing(snd_ahead)){}
-				walkforward_scan();
+				if(walkforward_eat())
+					break;
 			}
 		}
 		obj_angle=0;	
@@ -321,6 +335,21 @@ public walkforward()
 {
     motion_play(mot_walk_straight);
 	while (motion_is_playing(mot_walk_straight)){}
+					
+}
+
+public walkforward_eat()
+{
+	joint_control(JOINT_HEAD,1);
+	joint_move_to(JOINT_HEAD,-90,200,angle_degrees);
+	while(joint_is_moving(JOINT_HEAD)){}
+    motion_play(mot_walk_straight);
+	while (motion_is_playing(mot_walk_straight)){
+		if(sensor_get_value(SENSOR_MOUTH)){
+			card=1;
+			return 1;
+		}
+	}
 					
 }
 
@@ -360,17 +389,25 @@ public walk_fs_hdl_across()
 	joint_control(JOINT_NECK_VERTICAL,1);
 	joint_control(JOINT_NECK_HORIZONTAL,1);	
 	
-	joint_move_to(JOINT_NECK_VERTICAL, -30, 200, angle_degrees );
-    while(joint_is_moving(JOINT_NECK_VERTICAL)){}
-    joint_move_to(JOINT_NECK_HORIZONTAL, -65, 200, angle_degrees );
-	while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+	
 
 	while(1){
+		if (acrosswalk++>=10){
+			if (scan())
+				break;
+		}
+		
+		joint_move_to(JOINT_NECK_VERTICAL, -30, 200, angle_degrees );
+		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+		joint_move_to(JOINT_NECK_HORIZONTAL, -65, 200, angle_degrees );
+		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+				
 		motion_play(mot_tend_left);
 		while(motion_is_playing(mot_tend_left)){
 			if(sensor_get_value(SENSOR_OBJECT)<25){
 				motion_stop(mot_tend_left);
 				turnrightshort_hdlscan();	
+				turnrightshort_hdlscan();
 				turnrightshort_hdlscan();
 			}
 		}
@@ -383,18 +420,25 @@ public walk_fs_hdr_across()
     joint_control(JOINT_NECK_VERTICAL,1);
     joint_control(JOINT_NECK_HORIZONTAL,1);
    
-    joint_move_to(JOINT_NECK_VERTICAL, -30, 200, angle_degrees );
-    while(joint_is_moving(JOINT_NECK_VERTICAL)){}
-    joint_move_to(JOINT_NECK_HORIZONTAL, 65, 200, angle_degrees );
-    while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+    
  
     while(1){
-        motion_play(mot_com_walk_fs);
-        while(motion_is_playing(mot_com_walk_fs)){
+		if (acrosswalk++>=10)
+			if (scan())
+				break;
+	
+		joint_move_to(JOINT_NECK_VERTICAL, -30, 200, angle_degrees );
+		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+		joint_move_to(JOINT_NECK_HORIZONTAL, 65, 200, angle_degrees );
+		while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+			
+        motion_play(mot_tend_right);
+        while(motion_is_playing(mot_tend_right)){
             if(sensor_get_value(SENSOR_OBJECT)<25){
-                motion_stop(mot_com_walk_fs);
+                motion_stop(mot_tend_right);
                 turnleftshort_hdrscan();   
                 turnleftshort_hdrscan();
+				turnleftshort_hdrscan();
             }
         }
     }  
@@ -563,8 +607,8 @@ public backright()
 
 public backup()
 {
-	motion_play(mot_com_walk_bs);
-	while(motion_is_playing(mot_com_walk_bs)){}
+	motion_play(mot_back_straight);
+	while(motion_is_playing(mot_back_straight)){}
 }
 
 public backupshort()
@@ -633,10 +677,11 @@ public object_check()
 public scan()
 {
 	
-	joint_control(JOINT_NECK_HORIZONTAL,1);
-	joint_control(JOINT_NECK_VERTICAL,1)
-	home();
 	joint_control(JOINT_NECK_HORIZONTAL,0);
+	joint_control(JOINT_NECK_VERTICAL,0)
+	home();
+	joint_control(JOINT_NECK_HORIZONTAL,1);
+	joint_control(JOINT_NECK_VERTICAL,1);
 	
 	scan_fail++;
 	

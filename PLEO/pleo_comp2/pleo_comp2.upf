@@ -88,6 +88,8 @@
 	<motion path="${MOTIONS}/com_walk_fl_hd.csv" />
 	<motion path="${MOTIONS}/home.csv" />
 	<motion path="${MOTIONS}/tend_left.csv" />
+	<motion path="${MOTIONS}/tend_right.csv" />
+	<motion path="${MOTIONS}/back_straight.csv" />
 	
     <!-- Commands -->
 <!--    <command path="${COMMANDS}/name.csv" /> -->

@@ -37,4 +37,6 @@
   <e id=" 8234" name="home" />
   <e id=" 8235" name="walk_straight_hdl" />
   <e id=" 8236" name="tend_left" />
+  <e id=" 8237" name="tend_right" />
+  <e id=" 8238" name="back_straight" />
 </enum>
