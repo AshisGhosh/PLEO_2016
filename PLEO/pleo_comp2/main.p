@@ -169,7 +169,7 @@ public main()
 		backup();
 		
 		if(flag_right){
-			for(new i=0; i<5; i++)
+			for(new i=0; i<6; i++)
 				turnrightshort();
 		}
 		
@@ -244,10 +244,11 @@ public main()
 		}
 		
 		if(flag_right){
-			for(new bkpcount=0; bkpcount<7; bkpcount++)
+			for(new bkpcount=0; bkpcount<3; bkpcount++)
 				backup();
+				backright();
 			
-			for(new turn=0; turn<5; turn++)
+			for(new turn=0; turn<3; turn++)
 				turnleftshort();
 			
 		}
@@ -408,7 +409,7 @@ public go_middle()
 	if(flag_right){
 		for(new turn=0; turn<4; turn++)
 			turnrightshort();
-		for(new turn=0; turn<5; turn++)
+		for(new turn=0; turn<6; turn++)
 			turnleftshort();
 	}
 	
