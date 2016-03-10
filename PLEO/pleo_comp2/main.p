@@ -243,12 +243,13 @@ public main()
 			while(sound_is_playing(snd_beep)){}
 		}
 		
-		if(flag_right){
-			for(new bkpcount=0; bkpcount<3; bkpcount++)
+		for(new bkpcount=0; bkpcount<6; bkpcount++)
 				backup();
-				backright();
 			
-			for(new turn=0; turn<3; turn++)
+		if(flag_right){
+			backright();
+			
+			for(new turn=0; turn<4; turn++)
 				turnleftshort();
 			
 		}
@@ -325,6 +326,9 @@ public main()
 			
 			
 		}
+		
+		
+		
 		
 	}
 	
@@ -409,7 +413,7 @@ public go_middle()
 	if(flag_right){
 		for(new turn=0; turn<4; turn++)
 			turnrightshort();
-		for(new turn=0; turn<6; turn++)
+		for(new turn=0; turn<5; turn++)
 			turnleftshort();
 	}
 	
@@ -494,10 +498,14 @@ public walk_fs_hdl_across()
 	
 
 	while(1){
-		if (!(++acrosswalk%3)){}
-			if(scan()){
+		if (!(++acrosswalk%3)){
+			joint_move_to(JOINT_NECK_VERTICAL, 0, 200, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+			joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+			if(scan())
 				break;
-			}
+		}
 		
 		if (acrosswalk>=8&&!(acrosswalk%3)){
 			boardhalf==2;
