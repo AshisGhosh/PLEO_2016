@@ -169,7 +169,7 @@ public main()
 		backup();
 		
 		if(flag_right){
-			for(new i=0; i<6; i++)
+			for(new i=0; i<5; i++)
 				turnrightshort();
 		}
 		
@@ -494,9 +494,10 @@ public walk_fs_hdl_across()
 	
 
 	while(1){
-		if (!(++acrosswalk%3))
-			if(scan())
+		if (!(++acrosswalk%3)){}
+			if(scan()){
 				break;
+			}
 		
 		if (acrosswalk>=8&&!(acrosswalk%3)){
 			boardhalf==2;
