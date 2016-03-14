@@ -211,7 +211,11 @@ public main()
 		
 		if(flag_left){
 			turnleftshort();
-			walk_fs_hdr_across();
+			backupshort();
+			while(boardhalf==1){
+				walk_fs_hdr_across();
+				if(boardhalf==1){}
+			}
 		}
 		
 		joint_control(JOINT_HEAD,1);
@@ -230,10 +234,7 @@ public main()
 		
 		while(1){
 			zero_in();
-			if(flag_right)
-				walk_fs_hdl_across();
-			if(flag_left)
-				walk_fs_hdr_across();
+			walkforward();
 			if (card)
 				break;
 		}
@@ -302,7 +303,8 @@ public main()
 		
 	
 	testcode:
-		walk_fs_hdl_across();
+		while(1)
+			zero_in();
 		
 		while(1){
 			if(sensor_get_value(SENSOR_CHEEKR)==1){
@@ -504,7 +506,7 @@ public walk_fs_hdl_across()
 	
 
 	while(1){
-		if (!(++acrosswalk%2)){
+		if (!(++acrosswalk%2)&&acrosswalk<6){
 			joint_control(JOINT_NECK_VERTICAL,1);
 			joint_control(JOINT_NECK_HORIZONTAL,1);
 			joint_move_to(JOINT_NECK_VERTICAL, 10, 200, angle_degrees );
@@ -547,13 +549,22 @@ public walk_fs_hdr_across()
     //assert dominance
     joint_control(JOINT_NECK_VERTICAL,1);
     joint_control(JOINT_NECK_HORIZONTAL,1);
-   
-    
- 
+
     while(1){
-		if (acrosswalk++>=8&&!(acrosswalk%3)){
+   
+    	if (!(++acrosswalk%2)){
 			joint_control(JOINT_NECK_VERTICAL,1);
 			joint_control(JOINT_NECK_HORIZONTAL,1);
+			joint_move_to(JOINT_NECK_VERTICAL, 10, 200, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_VERTICAL)){}
+			joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
+			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
+			if(scan())
+				break;
+		}
+		
+		if (acrosswalk>=6&&!(acrosswalk%2)){
+			boardhalf=2;
 			joint_move_to(JOINT_NECK_VERTICAL, 0, 200, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 			joint_move_to(JOINT_NECK_HORIZONTAL, 0, 200, angle_degrees );
@@ -897,7 +908,7 @@ public scan()
 		}
 	}
 		
-	if (state_mach==2 || state_mach==3){
+	if (state_mach!=1){
 		new k = 65;
 
 		while(k>=-65){
