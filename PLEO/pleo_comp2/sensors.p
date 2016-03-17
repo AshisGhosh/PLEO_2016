@@ -33,7 +33,7 @@ public on_sensor(time, sensor_name: sensor, value)
 	case SENSOR_HEAD:
 		if (value==0)
 		{
-			sound_play(snd_growl);
+			//sound_play(snd_growl);
 			
 		}
 	case SENSOR_BATTERY:

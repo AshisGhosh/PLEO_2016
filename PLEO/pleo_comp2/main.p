@@ -100,7 +100,7 @@ new starting_second=0;
 
 public main()
 {	
-	batterycheck();
+	//batterycheck();
 	
     print("main::main() enter\n");
 	
@@ -113,8 +113,8 @@ public main()
 	
 	//STATE1: Start left
 	if (state_mach==1){
-		sound_play(snd_state_one);
-		while(sound_is_playing(snd_state_one)){}
+		///sound_play(snd_state_one);
+		//while(sound_is_playing(snd_state_one)){}
 		
 		home();
 		
@@ -123,16 +123,19 @@ public main()
 		if (starting_second)
 			delay(70000);
 
-		while(((flag_left<5)&&(flag_right<5))||(flag_right==flag_left)){
-			if(sensor_get_value(SENSOR_SOUND_DIR) > 40){
-				flag_right++;
-				flag_left--;
-				delay(400);
-			}
-			if((sensor_get_value(SENSOR_SOUND_DIR) <-40)&&(sensor_get_value(SENSOR_SOUND_DIR)>-91)){
-				flag_left++;
-				flag_right--;
-				delay(400);
+
+		while(((flag_left<3)&&(flag_right<3))||(flag_right==flag_left)){
+			if(sensor_get_value(SENSOR_SOUND_LOUD)> 70){
+				if(sensor_get_value(SENSOR_SOUND_DIR) > 40){
+					flag_right++;
+					flag_left--;
+					delay(100);
+				}
+				if((sensor_get_value(SENSOR_SOUND_DIR) <-40)&&(sensor_get_value(SENSOR_SOUND_DIR)>-91)){
+					flag_left++;
+					flag_right--;
+					delay(100);
+				}
 			}
 		}
 
@@ -217,8 +220,8 @@ public main()
 	}
 	
 	if(state_mach==2){
-		sound_play(snd_state_two);
-		while(sound_is_playing(snd_state_two)){}
+		//sound_play(snd_state_two);
+		//while(sound_is_playing(snd_state_two)){}
 		
 		joint_control(JOINT_NECK_VERTICAL,0);
 		joint_control(JOINT_NECK_HORIZONTAL,0);
@@ -231,19 +234,19 @@ public main()
 		while(!flag_right && !flag_left){
 			if(sensor_get_value(SENSOR_RIGHT_ARM)){
 				flag_right=1;
-				sound_play(snd_right);
-				while(sound_is_playing(snd_right)){}
+				//sound_play(snd_right);
+				//while(sound_is_playing(snd_right)){}
 			}
 				
 			if(sensor_get_value(SENSOR_LEFT_ARM)){
-				sound_play(snd_left);
-				while(sound_is_playing(snd_left)){}
+				//sound_play(snd_left);
+				//while(sound_is_playing(snd_left)){}
 				flag_left=1;
 			}
 		}
 		
-		sound_play(snd_beep);
-		while(sound_is_playing(snd_beep)){}
+		//sound_play(snd_beep);
+		//while(sound_is_playing(snd_beep)){}
 		
 		backup();
 		backup();
@@ -329,8 +332,8 @@ state_mach3:
 state_mach4:
 	if (state_mach==4){
 		for(new beepcount=0; beepcount<4;beepcount++){
-			sound_play(snd_beep);
-			while(sound_is_playing(snd_beep)){}
+			//sound_play(snd_beep);
+			//while(sound_is_playing(snd_beep)){}
 		}
 
 	joint_control(JOINT_HEAD,1);
@@ -349,8 +352,8 @@ state_mach4:
 	
 	if(state_mach==5){
 		for(new beepcount=0; beepcount<5;beepcount++){
-			sound_play(snd_beep);
-			while(sound_is_playing(snd_beep)){}
+			//sound_play(snd_beep);
+			//while(sound_is_playing(snd_beep)){}
 		}
 		
 		for(new bkpcount=0; bkpcount<8; bkpcount++)
@@ -383,8 +386,8 @@ state_mach4:
 
 	if(state_mach==6){
 		for(new beepcount=0; beepcount<6;beepcount++){
-			sound_play(snd_beep);
-			while(sound_is_playing(snd_beep)){}
+			//sound_play(snd_beep);
+			//while(sound_is_playing(snd_beep)){}
 		}
 
 		backupshort();
@@ -400,8 +403,8 @@ state_mach4:
 	wag();
 	wag();
 	
-	sound_play(snd_end_of_program);
-	while(sound_is_playing(snd_end_of_program)){}
+	//sound_play(snd_end_of_program);
+	//while(sound_is_playing(snd_end_of_program)){}
 		
 //****************************************************************************************************************************	
 //TESTING CODE:	
@@ -483,18 +486,18 @@ public zero_in()
 		}
 
 		if(sensor_get_value(SENSOR_OBJECT)>=98){
-			sound_play(snd_beep);
-			while(sound_is_playing(snd_beep)){}
+			//sound_play(snd_beep);
+			//while(sound_is_playing(snd_beep)){}
 		}
 	
 		if(obj_angle>=10){
-			sound_play(snd_right);
-			while(sound_is_playing(snd_right)){}
+			//sound_play(snd_right);
+			//while(sound_is_playing(snd_right)){}
 			turnrightshort_eat();
 		}
 		else if(obj_angle<=-10){
-			sound_play(snd_left);
-			while(sound_is_playing(snd_right)){}
+			//sound_play(snd_left);
+			//while(sound_is_playing(snd_right)){}
 			turnleftshort_eat();
 		}
 		
@@ -506,8 +509,8 @@ public zero_in()
 			
 			if(sensor_get_value(SENSOR_OBJECT)>=25){
 				card=1;
-				sound_play(snd_ahead);
-				while(sound_is_playing(snd_ahead)){}
+				//sound_play(snd_ahead);
+				//while(sound_is_playing(snd_ahead)){}
 				backup();
 				walkforward_eat();
 				break;
@@ -527,18 +530,18 @@ public zero_in_card()
 		}
 
 		if(sensor_get_value(SENSOR_OBJECT)>=98){
-			sound_play(snd_beep);
-			while(sound_is_playing(snd_beep)){}
+			// sound_play(snd_beep);
+			// while(sound_is_playing(snd_beep)){}
 		}
 	
 		if(obj_angle>=10){
-			sound_play(snd_right);
-			while(sound_is_playing(snd_right)){}
+			// sound_play(snd_right);
+			// while(sound_is_playing(snd_right)){}
 			pivot_right();
 		}
 		else if(obj_angle<=-10){
-			sound_play(snd_left);
-			while(sound_is_playing(snd_right)){}
+			// sound_play(snd_left);
+			// while(sound_is_playing(snd_right)){}
 			pivot_left();
 		}
 		
@@ -550,8 +553,8 @@ public zero_in_card()
 			
 			if(sensor_get_value(SENSOR_OBJECT)>=25){
 				card=1;
-				sound_play(snd_ahead);
-				while(sound_is_playing(snd_ahead)){}
+				// sound_play(snd_ahead);
+				// while(sound_is_playing(snd_ahead)){}
 				break;
 			}
 		}
@@ -592,8 +595,8 @@ public go_middle()
 	joint_move_to(JOINT_NECK_VERTICAL, -45, 200, angle_degrees );
 	while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 	
-	sound_play(snd_beep);
-	while(sound_is_playing(snd_beep)){}
+	// sound_play(snd_beep);
+	// while(sound_is_playing(snd_beep)){}
 	
 	while(sensor_get_value(SENSOR_OBJECT)>20){
 		joint_control(JOINT_NECK_VERTICAL,1);
@@ -1231,7 +1234,10 @@ public grab()
     //Close mouth
     joint_move_to(JOINT_HEAD, 90, 100, angle_degrees );
     while(joint_is_moving(JOINT_HEAD)){}
-   
+
+    new temp_pos = joint_get_position(JOINT_NECK_VERTICAL, angle_degrees);  
+    joint_move_to(JOINT_NECK_VERTICAL, temp_pos-3, 200, angle_degrees);
+    while(joint_is_moving(JOINT_NECK_VERTICAL)){} 
     backup();
  
     //de-assert dominance
