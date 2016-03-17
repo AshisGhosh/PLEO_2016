@@ -64,6 +64,7 @@ public walk_fs_across();
 public pivot_right();
 public pivot_left();
 public batterycheck();
+public start();
 //public soc_stand();
 
 
@@ -93,6 +94,10 @@ new scan_fail = 0;
 new flag_right=0, flag_left=0;
 new boardhalf=0;
 
+
+new starting_first=0;
+new starting_second=0;
+
 public main()
 {	
 	batterycheck();
@@ -113,12 +118,27 @@ public main()
 		
 		home();
 		
-		while(!flag_left&&!flag_right){
-			if(sensor_get_value(SENSOR_SOUND_DIR) > 30)
-				flag_right=1;
-			if(sensor_get_value(SENSOR_SOUND_DIR) <-30)
-				flag_left=1;
+		start();
+
+		if (starting_second)
+			delay(70000);
+
+		while((flag_left<3)&&(flag_right<3)&&(flag_right==flag_left)){
+			if(sensor_get_value(SENSOR_SOUND_DIR) > 40){
+				flag_right++;
+				flag_left--;
+			}
+			if((sensor_get_value(SENSOR_SOUND_DIR) <-40)&&(sensor_get_value(SENSOR_SOUND_DIR)>-91)){
+				flag_left++;
+				flag_right--;
+			}
 		}
+
+		if(flag_right>flag_left)
+			flag_left=0;
+
+		if(flag_left>flag_right)
+			flag_right=0;
 		
 		walkforward();
 
@@ -129,7 +149,8 @@ public main()
 		if(flag_left)
 			for(new i=0; i<2; i++)
 				turnleftshort();
-		
+
+		joint_control(JOINT_NECK_VERTICAL,1);
 		joint_move_to(JOINT_NECK_VERTICAL, -50, 200, angle_degrees );
 		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 		
@@ -146,9 +167,14 @@ public main()
 			walk_fs_hdl_across();
 			walk_fs_hdl_across();
 			walk_fs_hdl_across();
-			for(new turn=0; turn<2; turn++)
+			for(new turn=0; turn<5; turn++)
 				turnrightshort();
+			walkforward();
+			walkforward();
 			backright();
+			turnleftshort();
+			turnleftshort();
+			turnleftshort();
 		}
 
 		if(flag_left){
@@ -157,12 +183,13 @@ public main()
 			walk_fs_hdr_across();
 			walk_fs_hdr_across();
 			walk_fs_hdr_across();			
-			for(new turn=0; turn<4; turn++)
+			for(new turn=0; turn<5; turn++)
 				turnleftshort();
 			walkforward();
-			backleft();
 			walkforward();
-			for(new turn=0; turn<2; turn++)
+			backleft();
+			backup();
+			for(new turn=0; turn<4; turn++)
 				turnrightshort();
 		}
 		
@@ -171,6 +198,13 @@ public main()
 		
 		while(sensor_get_value(SENSOR_OBJECT)>20){
 			joint_control(JOINT_NECK_VERTICAL,1)
+			walkforward_hd_scan();
+			walkforward_hd_scan();
+		}
+
+		while(sensor_get_value(SENSOR_OBJECT)>20){
+			joint_control(JOINT_NECK_VERTICAL,1)
+			walkforward_hd_scan();
 			walkforward_hd_scan();
 		}
 
@@ -217,7 +251,7 @@ public main()
 		backup();
 		
 		if(flag_right){
-			for(new i=0; i<6; i++)
+			for(new i=0; i<7; i++)
 				turnrightshort();
 		}
 		
@@ -226,17 +260,20 @@ public main()
 				turnleftshort();
 		}
 		
+		joint_control(JOINT_NECK_VERTICAL,1)
 		joint_move_to(JOINT_NECK_VERTICAL, -45, 200, angle_degrees );
 		while(joint_is_moving(JOINT_NECK_VERTICAL)){}
 		
-		while(sensor_get_value(SENSOR_OBJECT)>20){
+		while(sensor_get_value(SENSOR_OBJECT)>35){
 			joint_control(JOINT_NECK_VERTICAL,1)
+			walkforward_scan();
 			walkforward_scan();
 		}
 
-		while(sensor_get_value(SENSOR_OBJECT)>20){
+		while(sensor_get_value(SENSOR_OBJECT)>35){
 			joint_control(JOINT_NECK_VERTICAL,1)
 			walkforward_scan();
+			walkforward_scan(); 
 		}
 		
 		joint_control(JOINT_NECK_VERTICAL,0)
@@ -1084,8 +1121,8 @@ public scan()
 			}
 	
 	if (state_mach==1){
-		new k =-65;
-		while(k<=65){
+		new k =-45;
+		while(k<=45){
 			joint_move_to(JOINT_NECK_HORIZONTAL, k, 100, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 				k++;
@@ -1100,9 +1137,9 @@ public scan()
 	}
 		
 	else{
-		new k = 65;
+		new k = 45;
 
-		while(k>=-65){
+		while(k>=-45){
 			joint_move_to(JOINT_NECK_HORIZONTAL, k, 100, angle_degrees );
 			while(joint_is_moving(JOINT_NECK_HORIZONTAL)){}
 				k--;
@@ -1233,4 +1270,21 @@ public delay(ms)
     {
        
     }
+}
+
+public start()
+{
+	new input = 0;
+	while(input == 0){
+		if(sensor_get_value(SENSOR_HEAD))
+		{
+			input = 1;
+			starting_first = 1;
+		}
+		if(sensor_get_value(SENSOR_CHIN))
+		{
+			starting_second = 1;
+			input = 1;
+		}		
+	}	
 }
