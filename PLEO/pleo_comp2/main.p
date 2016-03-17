@@ -123,14 +123,16 @@ public main()
 		if (starting_second)
 			delay(70000);
 
-		while((flag_left<3)&&(flag_right<3)&&(flag_right==flag_left)){
+		while(((flag_left<5)&&(flag_right<5))||(flag_right==flag_left)){
 			if(sensor_get_value(SENSOR_SOUND_DIR) > 40){
 				flag_right++;
 				flag_left--;
+				delay(400);
 			}
 			if((sensor_get_value(SENSOR_SOUND_DIR) <-40)&&(sensor_get_value(SENSOR_SOUND_DIR)>-91)){
 				flag_left++;
 				flag_right--;
+				delay(400);
 			}
 		}
 
