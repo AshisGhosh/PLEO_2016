@@ -1,18 +1,47 @@
 //
-// Very simple sensors.p example. Add code to on_sensor for those
-// sensors you would like to respond to.
+// sensors.p
+// PDK drive system example
+//
+// This script runs in the Sensors VM.  Its primary job,
+// in this example, is to watch for sensor input and modify
+// properties based on the nature of that sensor input. 
+// The drive system and other scripts are monitoring these same 
+// properties, and they'll take some action based on the values
+// of these properties.
+//
+// For example, in on_sensor, when one of Pleo's touch sensors is 
+// activated, we increase Pleo's happiness by increasing the value of
+// the happiness property:
+//
+//    if ((sensor > SENSOR_TOUCH_FIRST) && (sensor < SENSOR_TOUCH_LAST))
+//    {
+//        property_set(property_happiness, get(property_happiness) + 10);
+//    }
+//
+//
+// When Pleo's mouth sensor is activated, that means that something 
+// is in Pleo's mouth, so we increase the value of his blood_sugar
+// property:
+//
+//        case SENSOR_MOUTH:
+//        {
+//            property_set(property_blood_sugar, get(property_blood_sugar) + 25);
+//        }
 //
  
-// save space by packing all strings
+// Save space by packing all strings.
 #pragma pack 1
 
 #include <Log.inc>
 #include <Script.inc>
 #include <Sensor.inc>
+#include <Property.inc>
+
 #include <Sound.inc>
 #include "sounds.inc"
-#include <Motion.inc>
-#include "motions.inc"
+
+#include "user_properties.inc"
+
 
 public init()
 {
@@ -21,6 +50,12 @@ public init()
     print("sensors:init() exit\n");
 }
 
+//
+// on_sensor
+// 
+// If Pleo is touched, up the happiness property.
+// If Pleo is fed, up the blood_sugar property.
+//
 public on_sensor(time, sensor_name: sensor, value)
 {
     new name[32];
@@ -28,34 +63,45 @@ public on_sensor(time, sensor_name: sensor, value)
     
     printf("sensors:on_sensor(%d, %s, %d)\n", time, name, value);
     
+    // If Pleo is touched, increase his happiness.
+    if ((sensor > SENSOR_TOUCH_FIRST) && (sensor < SENSOR_TOUCH_LAST))
+    {
+        property_set(property_happiness, get(property_happiness) + 10);
+    }
+    
     switch (sensor)
     {
-	case SENSOR_HEAD:
-		if (value==0)
-		{
-			//sound_play(snd_growl);
-			
-		}
+    
+        // If Pleo eats something, 
+        // increase his blood sugar..
+        case SENSOR_MOUTH:
+        {
+            property_set(property_blood_sugar, get(property_blood_sugar) + 25);
+        }
+
+        case SENSOR_CHIN:
+        {
+            if(property_get(property_ragepoints) <80){
+                property_set(property_ragepoints, get(property_ragepoints) + 20);
+                sound_play(snd_beep);
+                while(sound_is_playing(snd_beep)){}
+            }
+        }
+
+        case SENSOR_HEAD:
+        {
+            if(property_get(property_ragepoints)>60){
+                property_set(property_ragepoints,100);
+            }
+        }
+    
+    }
+    
+    // Reset sensor trigger.
     return true;
 }
 
 public close()
-	case SENSOR_BATTERY:
-		if (value <=35)
-		{
-			sound_play(snd_1p1_honk04);
-		}
-	
-	case SENSOR_MOUTH:
-		if (value)
-		{
-			sound_play(snd_beep);
-			
-		}
-
-    }
-    
-	// reset sensor trigger
 {
     print("sensors:close() enter\n");
 

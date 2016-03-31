@@ -1,2 +1,2 @@
-xcopy build\pleo_comp2.urf D: /Y
-xcopy build\pleo_comp2.urf E: /Y
+xcopy build\pleo_comp3.urf D: /Y
+xcopy build\pleo_comp3.urf E: /Y

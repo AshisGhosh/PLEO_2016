@@ -1,0 +1,399 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"youtube",
+				"youtube_history_profile"
+			],
+			[
+				"joint",
+				"joint_is_moving"
+			],
+			[
+				"Joint",
+				"JOINT_NECK_VERTICAL"
+			],
+			[
+				"walk",
+				"walkcount"
+			],
+			[
+				"sart",
+				"starting_second"
+			],
+			[
+				"fl",
+				"flag_left"
+			],
+			[
+				"flag",
+				"flag_right"
+			],
+			[
+				"Join",
+				"JOINT_NECK_VERTICAL"
+			],
+			[
+				"walk_fs",
+				"walk_fs_hdl_across"
+			],
+			[
+				"JOI",
+				"JOINT_NECK_HORIZONTAL"
+			],
+			[
+				"JOINT",
+				"JOINT_NECK_VERTICAL"
+			],
+			[
+				"turnleft",
+				"turnleftshort"
+			],
+			[
+				"turn",
+				"turnrightshort"
+			],
+			[
+				"state",
+				"state_mach"
+			],
+			[
+				"walk_fs_hdr",
+				"walk_fs_hdr_across"
+			],
+			[
+				"back",
+				"backright"
+			],
+			[
+				"flag_",
+				"flag_left"
+			],
+			[
+				"backup",
+				"backupshort"
+			],
+			[
+				"Pivot_",
+				"pivot_left"
+			],
+			[
+				"fla",
+				"flag_right"
+			],
+			[
+				"JOINT_",
+				"JOINT_NECK_HORIZONTAL"
+			],
+			[
+				"walkforwa",
+				"walkforward"
+			],
+			[
+				"mot_t",
+				"mot_tend_right"
+			],
+			[
+				"state_",
+				"state_mach"
+			],
+			[
+				"Sen",
+				"SENSOR_OBJECT"
+			],
+			[
+				"backu",
+				"backupshort"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "pleo_comp2/pleo_comp2.upf",
+			"settings":
+			{
+				"buffer_size": 3790,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 360.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/index.html",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/detail.html",
+		"/C/Users/Ashis/Documents/N36/Code/smirktest/thirdauth/urls.py",
+		"/C/Users/Ashis/Documents/N36/Code/smirktest/thirdauth/views.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/views.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/urls.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/yourname.html",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/forms.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/results.html",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/models.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/mysite/settings.py",
+		"/C/Users/Ashis/Documents/PLEO_2016/PLEO/pleo_comp3/build.bat",
+		"/C/Users/Ashis/Documents/N36/Code/django-allauth/allauth/account/views.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/mysite/urls.py",
+		"/C/Users/Ashis/Documents/PLEO_2016/PLEO/PrbDK/examples/drive_example/include/motions.inc",
+		"/C/Users/Ashis/Documents/PLEO_2016/PLEO/PrbDK/include/Drive.inc",
+		"/C/Users/Ashis/Documents/N36/Code/testapi/youtube/client_secrets.json",
+		"/C/Users/Ashis/Documents/N36/Code/smirktest/thirdauth/youtube_profile.py",
+		"/C/Users/Ashis/Documents/N36/Code/smirktest/thirdauth/wsgi.py",
+		"/C/Users/Ashis/Documents/N36/Code/smirktest/thirdauth/settings.py",
+		"/C/Users/Ashis/Documents/N36/Code/smirk/smirk/settings.py",
+		"/C/Users/Ashis/Documents/PLEO_2016/PLEO/PrbDK/examples/drive_example/main.p",
+		"/C/Users/Ashis/Documents/CheckerAutobot/NOTES",
+		"/C/Users/Ashis/Documents/N36/Code/smirktest/thirdauth/models.py",
+		"/C/Users/Ashis/Documents/N36/Code/testapi/youtube/test_youtube3.py",
+		"/C/Users/Ashis/Documents/N36/Code/N36",
+		"/C/Users/Ashis/Downloads/Lab8_1/Lab8_1/Sources/main.c",
+		"/C/Users/Ashis/Downloads/Lab7_1/Sources/main.c",
+		"/C/Users/Ashis/Desktop/NewFile2-001.csv",
+		"/C/Users/Ashis/Downloads/Lab8_2/Lab8_2/Sources/main.c",
+		"/C/Users/Ashis/Downloads/Lab8_3/Lab8_3/Sources/main.c",
+		"/C/Users/Ashis/Desktop/NewFile3",
+		"/C/Users/Ashis/Desktop/NewFile2-000.csv"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"scr_eat",
+			"error",
+			"position",
+			"error",
+			"define",
+			"joint_get",
+			"grab",
+			"zero",
+			"sound_play",
+			"sound",
+			"scan_vert",
+			"vert_scan",
+			"scan",
+			"45",
+			"zero_in",
+			"walkforward_card",
+			"sound_dir",
+			"walk_fs_hdr_across",
+			"walk_fs_hdl_across",
+			"go_middle",
+			"scan",
+			"home",
+			"acrosswalk",
+			"walk_fs_hdr_across",
+			"walk_fs_hdr",
+			"walkforward_hd_scan",
+			"zero_in_card",
+			"zero_in",
+			"90",
+			"98",
+			"scan",
+			"zero_in_card",
+			"card",
+			"grab",
+			"grab()",
+			"gab()",
+			"gra()",
+			"zero_in",
+			"pivot_right",
+			"grab",
+			"walkforward_card",
+			"grab",
+			"walkforward_card",
+			"grab",
+			"card",
+			"walk_forward",
+			"walkforward",
+			"walkforard",
+			"walkforward_card",
+			"grab",
+			"scan",
+			"walk_fs_hdl_across",
+			"scan",
+			"walkforward_scan",
+			"acrosswalk",
+			"state_mach3",
+			"65",
+			"go_middle",
+			"scan",
+			"snd_ahead",
+			"ahead",
+			"scan",
+			"go_middle",
+			"scan",
+			"walk_fs_hdr_across",
+			"scan",
+			"walk_hs_hdl_across",
+			"zero_in",
+			"card",
+			"walkforward_card",
+			"walkforward_eat",
+			"zero_in",
+			"go_middle",
+			"scan",
+			"walkforward_eat",
+			"scan",
+			"card",
+			"scan",
+			"zero_in",
+			"walkforward",
+			"zero_in",
+			"scan",
+			"_eat",
+			"walkforward_eat",
+			"zero_in",
+			"scan",
+			"scan()",
+			"zero_in",
+			"testflag",
+			"testcode",
+			"zero_in",
+			"zero_iin",
+			"scan",
+			"scan()",
+			"walk_fs_hdr_across"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "pleo_comp2/pleo_comp2.upf",
+					"settings":
+					{
+						"buffer_size": 3790,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								448,
+								448
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

@@ -10,5 +10,12 @@ enum script_name {
   scr_min     = 16384,
   scr_sensors = 16384,
   scr_main    = 16385,
+  scr_eat     = 16386,
+  scr_whine   = 16387,
+  scr_wag     = 16388,
+  scr_growl   = 16389,
+  scr_home    = 16390,
+  scr_rage    = 16391,
+  scr_annoyed = 16392,
   scr_max
 };

@@ -1,1 +1,1 @@
-..\..\bin\upf_project_tool template.upf rebuild
+..\..\bin\upf_project_tool drive_example.upf rebuild
