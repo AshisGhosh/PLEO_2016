@@ -1,0 +1,46 @@
+<upf_project name="touch_test">
+
+  <options>
+    <set name="top" value="../.." />
+    <include value="./include:${top}/include" />
+    <tools>
+     <pawn value="../../bin/pawncc33 %i -O2 -V8192 -v2 -S128 -C- %I -o%o" />
+    </tools>
+    <directories>
+      <include value="include" />
+      <build value="build" />
+      <temp value="temp" />
+    </directories>
+    <motion version="3" />
+    <sound adpcm="false" />
+    <version value="3" />
+  </options>
+
+  <set-default name="MEDIA" value="../../media" />
+
+  <set name="SOUNDS" value="${MEDIA}/sounds" />
+  <set name="MOTIONS" value="${MEDIA}/motions" />
+  <set name="COMMANDS" value="${MEDIA}/commands" />
+  <set name="SCRIPTS" value="." />
+
+  <resources>
+
+    <!-- Sounds -->
+    <sound path="${SOUNDS}/growl.wav" />
+
+    <!-- Motions -->
+    <motion path="${MOTIONS}/bow.csv" />
+
+    <!-- Commands -->
+<!--    <command path="${COMMANDS}/name.csv" /> -->
+
+    <!-- Scripts -->
+    <script path="${SCRIPTS}/sensors.p" />
+    <script path="${SCRIPTS}/main.p" />
+
+    <!-- User Properties -->
+<!--    <user_property path="my_prop" /> -->
+
+  </resources>
+  
+</upf_project>

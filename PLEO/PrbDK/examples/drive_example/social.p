@@ -96,7 +96,7 @@ public social_eval()
 public social_behavior_eval(behavior_id)
 {
 
-    switch (behavior_id)
+    switch (behavior_id)                                                                                                                                                                                                                                                                                                                                                                             
     {
     
         // By default, Pleo runs the wagging script.
