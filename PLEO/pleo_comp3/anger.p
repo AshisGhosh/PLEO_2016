@@ -132,6 +132,7 @@ public anger_behavior_eval(behavior_id)
         case scr_rage:
         {
             if (property_get(property_ragepoints) >= 80){
+                sound_play(snd_growl_master);
                 //sound_play(snd_growl_3);
                 //while(sound_is_playing(snd_growl_3)){}
                 return 100;
