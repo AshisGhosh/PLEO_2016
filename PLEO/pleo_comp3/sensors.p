@@ -81,7 +81,7 @@ public on_sensor(time, sensor_name: sensor, value)
 
         case SENSOR_CHIN:
         {
-            if(property_get(property_ragepoints) <80){
+            if(property_get(property_ragepoints) <60){
                 property_set(property_ragepoints, get(property_ragepoints) + 20);
                 sound_play(snd_beep);
                 while(sound_is_playing(snd_beep)){}
@@ -90,7 +90,7 @@ public on_sensor(time, sensor_name: sensor, value)
 
         case SENSOR_HEAD:
         {
-            if(property_get(property_ragepoints)>60){
+            if(property_get(property_ragepoints)>40){
                 property_set(property_ragepoints,100);
             }
         }

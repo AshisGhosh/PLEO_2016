@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Re",
+				"Restaurant"
+			],
+			[
+				"Resta",
+				"RestaurantForm"
+			],
+			[
 				"property",
 				"property_ragepoints"
 			],
@@ -132,148 +140,101 @@
 	"buffers":
 	[
 		{
-			"file": "pleo_comp3/pleo_comp3.upf",
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/urls.py",
 			"settings":
 			{
-				"buffer_size": 4123,
+				"buffer_size": 541,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "pleo_comp3/build.bat",
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/views.py",
 			"settings":
 			{
-				"buffer_size": 51,
+				"buffer_size": 2990,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "pleo_comp3/copy.bat",
+			"contents": "import datetime\n\nfrom django.db import models\nfrom django.utils import timezone\nfrom django import forms\n\nWHAT_GIF_CHOICES = (\n    ('pizza','Pizza'), \n    ('drink','Drink'), \n    ('fancy','Fancy'),\n)\n\nHOW_GIF_CHOICES = (\n    ('lit','Lit'), \n    ('casual','Casual'), \n    ('business','Business'),\n)\n\nclass Poll(models.Model):\n    question = models.CharField(max_length=200)\n    pub_date = models.DateTimeField('date published')\n\n    def __unicode__(self):  # Python 3: def __str__(self):\n        return self.question\n\n    def was_published_recently(self):\n        now = timezone.now()\n        return now - datetime.timedelta(days=1) <= self.pub_date < now\n\n    was_published_recently.admin_order_field = 'pub_date'\n    was_published_recently.boolean = True\n    was_published_recently.short_description = 'Published recently?'\n\n\nclass Choice(models.Model):\n    poll = models.ForeignKey(Poll)\n    choice_text = models.CharField(max_length=200)\n    votes = models.IntegerField(default=0)\n\n    def __unicode__(self):  # Python 3: def __str__(self):\n        return self.choice_text\n\nclass Restaurant(models.Model):\n    what = models.CharField(max_length=60, choices=WHAT_GIF_CHOICES, default=None)\n    how = models.CharField(max_length=60, choices=HOW_GIF_CHOICES, default=None)\n\n#------- FORMS --------\nclass RestaurantForm(forms.ModelForm):\n    class Meta:\n        model = Restaurant\n        fields = ['what', 'how']\n        widgets = {\n            'what': forms.RadioSelect(),    \n            'how' : forms.RadioSelect(),\n        }",
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/models.py",
+			"file_size": 1555,
+			"file_write_time": 131039435401351744,
 			"settings":
 			{
-				"buffer_size": 65,
+				"buffer_size": 1528,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "pleo_comp3/blank.p",
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/recommendation.html",
 			"settings":
 			{
-				"buffer_size": 2640,
+				"buffer_size": 132,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/restaurantrequest.html",
+			"settings":
+			{
+				"buffer_size": 388,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/detail.html",
+			"settings":
+			{
+				"buffer_size": 685,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/results.html",
+			"settings":
+			{
+				"buffer_size": 246,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/forms.py",
+			"settings":
+			{
+				"buffer_size": 938,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/mysite/settings.py",
+			"settings":
+			{
+				"buffer_size": 5540,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/admin.py",
+			"settings":
+			{
+				"buffer_size": 646,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/migrations/0001_initial.py",
+			"settings":
+			{
+				"buffer_size": 1771,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "pleo_comp3/anger.p",
-			"settings":
-			{
-				"buffer_size": 3565,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "pleo_comp3/main.p",
-			"settings":
-			{
-				"buffer_size": 2744,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/user_properties.xml",
-			"settings":
-			{
-				"buffer_size": 203,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/scripts.xml",
-			"settings":
-			{
-				"buffer_size": 365,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/sensors.p",
-			"settings":
-			{
-				"buffer_size": 2684,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/behaviors/growl.p",
-			"settings":
-			{
-				"buffer_size": 1183,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "pleo_comp3/behaviors/home.p",
-			"settings":
-			{
-				"buffer_size": 1181,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/behaviors/rage.p",
-			"settings":
-			{
-				"buffer_size": 1181,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/behaviors/annoyed.p",
-			"settings":
-			{
-				"buffer_size": 1246,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/commands/graze.csv",
-			"settings":
-			{
-				"buffer_size": 113,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/commands/growl.csv",
-			"settings":
-			{
-				"buffer_size": 17,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "pleo_comp3/commands/home.csv",
-			"settings":
-			{
-				"buffer_size": 11,
-				"line_ending": "Windows",
-				"name": "motion"
-			}
-		},
-		{
-			"file": "pleo_comp3/commands/rage.csv",
-			"settings":
-			{
-				"buffer_size": 18,
-				"line_ending": "Windows",
-				"name": "motion"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 35.0,
 		"selected_items":
 		[
 			[
@@ -314,6 +275,13 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/migrations/0001_initial.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/migrations/__init__.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/mysite/__init__.py",
+		"/C/Users/Ashis/Documents/heroku/python-getting-started/hello/migrations/__init__.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/manage.py",
+		"/C/Users/Ashis/Documents/N36/Code/smirktest/manage.py",
+		"/C/Users/Ashis/Documents/N36/Code/poll/polls/forms.py",
 		"/C/Users/Ashis/Documents/PLEO_2016/PLEO/pleo_comp3/behaviors/whine.p",
 		"/C/Users/Ashis/Documents/PLEO_2016/PLEO/pleo_comp3/commands/snd_wagging.csv",
 		"/C/Users/Ashis/Documents/PLEO_2016/PLEO/pleo_comp3/behaviors/wag.p",
@@ -330,7 +298,6 @@
 		"/C/Users/Ashis/Documents/N36/Code/poll/polls/views.py",
 		"/C/Users/Ashis/Documents/N36/Code/poll/polls/urls.py",
 		"/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/yourname.html",
-		"/C/Users/Ashis/Documents/N36/Code/poll/polls/forms.py",
 		"/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/results.html",
 		"/C/Users/Ashis/Documents/N36/Code/poll/polls/models.py",
 		"/C/Users/Ashis/Documents/N36/Code/poll/mysite/settings.py",
@@ -373,6 +340,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"choice",
+			"nameform",
 			"anger",
 			"snd_wagging",
 			"scr_eat",
@@ -488,56 +457,56 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 10,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "pleo_comp3/pleo_comp3.upf",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/urls.py",
 					"settings":
 					{
-						"buffer_size": 4123,
+						"buffer_size": 541,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3941,
-								3941
+								488,
+								488
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1272.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "pleo_comp3/build.bat",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/views.py",
 					"settings":
 					{
-						"buffer_size": 51,
+						"buffer_size": 2990,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								40,
-								40
+								2188,
+								2188
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Batch File/Batch File.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -547,23 +516,25 @@
 				},
 				{
 					"buffer": 2,
-					"file": "pleo_comp3/copy.bat",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/models.py",
 					"settings":
 					{
-						"buffer_size": 65,
+						"buffer_size": 1528,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								55,
-								55
+								894,
+								900
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Batch File/Batch File.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -573,107 +544,101 @@
 				},
 				{
 					"buffer": 3,
-					"file": "pleo_comp3/blank.p",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/recommendation.html",
 					"settings":
 					{
-						"buffer_size": 2640,
+						"buffer_size": 132,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1691,
-								1691
+								132,
+								132
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 947.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "pleo_comp3/anger.p",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/restaurantrequest.html",
 					"settings":
 					{
-						"buffer_size": 3565,
+						"buffer_size": 388,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3387,
-								3387
+								168,
+								168
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1877.0,
+						"translation.y": 1.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "pleo_comp3/main.p",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/detail.html",
 					"settings":
 					{
-						"buffer_size": 2744,
+						"buffer_size": 685,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2462,
-								2462
+								203,
+								203
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1011.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "pleo_comp3/user_properties.xml",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/templates/polls/results.html",
 					"settings":
 					{
-						"buffer_size": 203,
+						"buffer_size": 246,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								191,
-								191
+								226,
+								226
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/XML/XML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -683,176 +648,10 @@
 				},
 				{
 					"buffer": 7,
-					"file": "pleo_comp3/scripts.xml",
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/forms.py",
 					"settings":
 					{
-						"buffer_size": 365,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								365,
-								365
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/XML/XML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "pleo_comp3/sensors.p",
-					"settings":
-					{
-						"buffer_size": 2684,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1939,
-								1939
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1097.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "pleo_comp3/behaviors/growl.p",
-					"settings":
-					{
-						"buffer_size": 1183,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								386,
-								386
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "pleo_comp3/behaviors/home.p",
-					"settings":
-					{
-						"buffer_size": 1181,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								1181
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "pleo_comp3/behaviors/rage.p",
-					"settings":
-					{
-						"buffer_size": 1181,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								1181
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 712.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "pleo_comp3/behaviors/annoyed.p",
-					"settings":
-					{
-						"buffer_size": 1246,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								411,
-								411
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 623.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "pleo_comp3/commands/graze.csv",
-					"settings":
-					{
-						"buffer_size": 113,
+						"buffer_size": 938,
 						"regions":
 						{
 						},
@@ -865,7 +664,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -874,24 +675,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 14,
-					"file": "pleo_comp3/commands/growl.csv",
+					"buffer": 8,
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/mysite/settings.py",
 					"settings":
 					{
-						"buffer_size": 17,
+						"buffer_size": 5540,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17,
-								17
+								1026,
+								1032
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -900,25 +703,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
-					"file": "pleo_comp3/commands/home.csv",
+					"buffer": 9,
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/admin.py",
 					"settings":
 					{
-						"buffer_size": 11,
+						"buffer_size": 646,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11,
-								11
+								646,
+								646
 							]
 						],
 						"settings":
 						{
-							"auto_name": "motion",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -927,28 +731,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 16,
-					"file": "pleo_comp3/commands/rage.csv",
+					"buffer": 10,
+					"file": "/C/Users/Ashis/Documents/N36/Code/poll/polls/migrations/0001_initial.py",
 					"settings":
 					{
-						"buffer_size": 18,
+						"buffer_size": 1771,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								18,
-								18
+								1125,
+								1125
 							]
 						],
 						"settings":
 						{
-							"auto_name": "motion",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 101.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

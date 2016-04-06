@@ -56,6 +56,8 @@
     <sound path="${SOUNDS}/sur_004.wav" />
     <sound path="${SOUNDS}/beep.wav" />
     <sound path="${SOUNDS}/growl.wav" />
+    <sound path="${SOUNDS}/growl_1.wav" />
+    <sound path="${SOUNDS}/growl_2.wav" />
 
     <!-- Motions -->
     <motion path="${MOTIONS}/hungry_search.csv" />
@@ -77,6 +79,7 @@
     <motion path="${MOTIONS}/growl_pos.csv" />
     <motion path="${MOTIONS}/home.csv" />
     <motion path="${MOTIONS}/rage_motion.csv" />
+    <motion path="${MOTIONS}/annoyed_pos.csv" />
 
     <!-- Commands -->
     <command path="${COMMANDS}/graze.csv" />
@@ -89,6 +92,7 @@
     <command path="${COMMANDS}/growl.csv" />
     <command path="${COMMANDS}/home.csv" />
     <command path="${COMMANDS}/rage.csv" />
+    <command path="${COMMANDS}/annoyed.csv" />
 
     <!-- Scripts -->
     <script path="sensors.p" />

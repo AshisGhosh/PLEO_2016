@@ -54,8 +54,9 @@ public main()
         //     sleep;
         // }
 
-        joint_move_to(JOINT_TAIL_VERTICAL,-90, 200,angle_degrees);
-        while(joint_is_moving(JOINT_TAIL_VERTICAL))
+       command_exec(cmd_annoyed);
+
+        while(command_is_playing(cmd_annoyed))
         {
             sleep;
         }

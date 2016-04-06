@@ -27,5 +27,6 @@ enum motion_name {
   mot_hungry_search        =  8209,
   mot_home                 =  8210,
   mot_rage_motion          =  8211,
+  mot_annoyed_pos          =  8212,
   mot_max
 };

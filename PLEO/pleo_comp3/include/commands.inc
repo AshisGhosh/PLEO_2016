@@ -18,5 +18,6 @@ enum command_name {
   cmd_growl       = 12295,
   cmd_home        = 12296,
   cmd_rage        = 12297,
+  cmd_annoyed     = 12298,
   cmd_max
 };

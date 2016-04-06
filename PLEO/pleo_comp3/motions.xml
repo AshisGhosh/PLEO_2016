@@ -18,4 +18,5 @@
   <e id=" 8209" name="hungry_search" />
   <e id=" 8210" name="home" />
   <e id=" 8211" name="rage_motion" />
+  <e id=" 8212" name="annoyed_pos" />
 </enum>

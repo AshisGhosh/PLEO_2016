@@ -29,4 +29,6 @@
   <e id=" 4123" name="sur_004" />
   <e id=" 4124" name="beep" />
   <e id=" 4125" name="growl" />
+  <e id=" 4126" name="growl_1" />
+  <e id=" 4127" name="growl_2" />
 </enum>
