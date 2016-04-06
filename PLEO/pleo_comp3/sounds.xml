@@ -29,9 +29,17 @@
   <e id=" 4123" name="sur_004" />
   <e id=" 4124" name="beep" />
   <e id=" 4125" name="growl" />
-  <e id=" 4126" name="growl_1" />
-  <e id=" 4127" name="growl_2" />
-  <e id=" 4128" name="growl_3" />
-  <e id=" 4129" name="growl_master" />
-  <e id=" 4130" name="growl_3_loud" />
+  <e id=" 4126" name="lovesong" />
+  <e id=" 4127" name="whistle" />
+  <e id=" 4128" name="vomit" />
+  <e id=" 4129" name="sniffnasty" />
+  <e id=" 4130" name="excited" />
+  <e id=" 4131" name="excited2" />
+  <e id=" 4132" name="panting" />
+  <e id=" 4133" name="growl_1" />
+  <e id=" 4134" name="growl_2" />
+  <e id=" 4135" name="growl_3" />
+  <e id=" 4136" name="growl_master" />
+  <e id=" 4137" name="growl_3_loud" />
+  <e id=" 4138" name="better" />
 </enum>

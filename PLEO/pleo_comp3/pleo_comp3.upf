@@ -56,11 +56,19 @@
     <sound path="${SOUNDS}/sur_004.wav" />
     <sound path="${SOUNDS}/beep.wav" />
     <sound path="${SOUNDS}/growl.wav" />
+	<sound path="${SOUNDS}/lovesong.wav" />
+	<sound path="${SOUNDS}/whistle.wav" />
+	<sound path="${SOUNDS}/vomit.wav" />
+	<sound path="${SOUNDS}/sniffnasty.wav" />
+	<sound path="${SOUNDS}/excited.wav" />
+	<sound path="${SOUNDS}/excited2.wav" />
+	<sound path="${SOUNDS}/panting.wav" />
     <sound path="${SOUNDS}/growl_1.wav" />
     <sound path="${SOUNDS}/growl_2.wav" />
     <sound path="${SOUNDS}/growl_3.wav" />
-    <sound path="${SOUNDS}/growl_3_loud.wav" />
+	<sound path="${SOUNDS}/growl_3_loud.wav" />
     <sound path="${SOUNDS}/growl_master.wav" />
+	<sound path="${SOUNDS}/better.wav" />
 
     <!-- Motions -->
     <motion path="${MOTIONS}/hungry_search.csv" />
@@ -82,6 +90,14 @@
     <motion path="${MOTIONS}/growl_pos.csv" />
     <motion path="${MOTIONS}/home.csv" />
     <motion path="${MOTIONS}/rage_motion.csv" />
+	<motion path="${MOTIONS}/inlove_motion.csv" />
+    <motion path="${MOTIONS}/catcall_motion.csv" />
+	<motion path="${MOTIONS}/nasty1_motion.csv" />
+    <motion path="${MOTIONS}/nasty2_motion.csv" />
+	<motion path="${MOTIONS}/nasty3_motion.csv" />
+	<motion path="${MOTIONS}/excited.csv" />
+	<motion path="${MOTIONS}/heardyou.csv" />
+	<motion path="${MOTIONS}/pivot_left.csv" />
     <motion path="${MOTIONS}/annoyed_pos.csv" />
 
     <!-- Commands -->
@@ -95,6 +111,12 @@
     <command path="${COMMANDS}/growl.csv" />
     <command path="${COMMANDS}/home.csv" />
     <command path="${COMMANDS}/rage.csv" />
+	<command path="${COMMANDS}/inlove.csv" />
+	<command path="${COMMANDS}/catcall.csv" />
+	<command path="${COMMANDS}/nasty1.csv" />
+	<command path="${COMMANDS}/nasty2.csv" />
+	<command path="${COMMANDS}/heard.csv" /> 
+    <command path="${COMMANDS}/excited.csv" />
     <command path="${COMMANDS}/annoyed.csv" />
 
     <!-- Scripts -->
@@ -107,11 +129,20 @@
     <script path="${SCRIPTS}/home.p" />
     <script path="${SCRIPTS}/rage.p" /> 
     <script path="${SCRIPTS}/annoyed.p" />
-
+	<script path="${SCRIPTS}/catcall.p" />
+	<script path="${SCRIPTS}/inlove.p" />
+	<script path="${SCRIPTS}/nasty1.p" />
+	<script path="${SCRIPTS}/nasty2.p" />
+	<script path="${SCRIPTS}/heard.p" /> 
+    <script path="${SCRIPTS}/excited.p" />
+	
     <!-- User Properties -->
     <user_property path="blood_sugar" />
     <user_property path="happiness" />
     <user_property path="ragepoints" />
-
+	<user_property path="lovepoints" />
+	<user_property path="disgustpoints" />
+	<user_property path="pumped" />	
+	
   </resources>
 </upf_project>

@@ -8,4 +8,10 @@
   <e id="16390" name="home" />
   <e id="16391" name="rage" />
   <e id="16392" name="annoyed" />
+  <e id="16393" name="catcall" />
+  <e id="16394" name="inlove" />
+  <e id="16395" name="nasty1" />
+  <e id="16396" name="nasty2" />
+  <e id="16397" name="heard" />
+  <e id="16398" name="excited" />
 </enum>

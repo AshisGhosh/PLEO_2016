@@ -18,5 +18,13 @@
   <e id=" 8209" name="hungry_search" />
   <e id=" 8210" name="home" />
   <e id=" 8211" name="rage_motion" />
-  <e id=" 8212" name="annoyed_pos" />
+  <e id=" 8212" name="inlove_motion" />
+  <e id=" 8213" name="catcall_motion" />
+  <e id=" 8214" name="nasty1_motion" />
+  <e id=" 8215" name="nasty2_motion" />
+  <e id=" 8216" name="nasty3_motion" />
+  <e id=" 8217" name="excited" />
+  <e id=" 8218" name="heardyou" />
+  <e id=" 8219" name="pivot_left" />
+  <e id=" 8220" name="annoyed_pos" />
 </enum>

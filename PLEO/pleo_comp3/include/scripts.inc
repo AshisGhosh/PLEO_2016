@@ -17,5 +17,11 @@ enum script_name {
   scr_home    = 16390,
   scr_rage    = 16391,
   scr_annoyed = 16392,
+  scr_catcall = 16393,
+  scr_inlove  = 16394,
+  scr_nasty1  = 16395,
+  scr_nasty2  = 16396,
+  scr_heard   = 16397,
+  scr_excited = 16398,
   scr_max
 };

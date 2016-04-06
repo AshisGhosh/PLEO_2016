@@ -48,6 +48,9 @@
 // #include "hunger.p"
 #include "anger.p"
 #include "blank.p"
+#include "love.p"
+#include "disgust.p"
+#include "excited.p"
 
 //
 // init
@@ -65,12 +68,18 @@ public init()
     // drive_add("hunger", -25, 25, 1000);
     drive_add("anger", -25, 25, 1000);
     drive_add("blank", -25, 25, 1000);
+	drive_add("love", -25, 25, 1000);
+	drive_add("disgust", -25, 25, 1000);
+	drive_add("excited", -25, 25, 1000);
 
     // Set initial values for the properties.
     // Values vary between 0 and 100.
     // property_set(property_blood_sugar, 50);
     // property_set(property_happiness, 70);
     property_set(property_ragepoints, 30);
+	property_set(property_lovepoints, 20);
+	property_set(property_disgustpoints, 0);
+	property_set(property_pumped, 20);
 
     // Start the properties leaking.  
     // blood_sugar will lose 3 points every two seconds,
@@ -80,7 +89,9 @@ public init()
 
     //ragepoints will decrease at 1 point a second
     property_set_leak(property_ragepoints, -1, 1000, 100,0);
-
+	//property_set_leak(property_lovepoints, -1, 1000, 100,0);
+	//No Leak for digust, can reset by giving better food
+	//property_set_leak(property_disgustpoints, -1, 1000, 100,0);
     print("main::init() exit\n");
 
 }

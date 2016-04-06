@@ -18,6 +18,12 @@ enum command_name {
   cmd_growl       = 12295,
   cmd_home        = 12296,
   cmd_rage        = 12297,
-  cmd_annoyed     = 12298,
+  cmd_inlove      = 12298,
+  cmd_catcall     = 12299,
+  cmd_nasty1      = 12300,
+  cmd_nasty2      = 12301,
+  cmd_heard       = 12302,
+  cmd_excited     = 12303,
+  cmd_annoyed     = 12304,
   cmd_max
 };

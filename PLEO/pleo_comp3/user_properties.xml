@@ -2,4 +2,7 @@
   <e id="20480" name="blood_sugar" />
   <e id="20481" name="happiness" />
   <e id="20482" name="ragepoints" />
+  <e id="20483" name="lovepoints" />
+  <e id="20484" name="disgustpoints" />
+  <e id="20485" name="pumped" />
 </enum>

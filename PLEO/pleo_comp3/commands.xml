@@ -9,5 +9,11 @@
   <e id="12295" name="growl" />
   <e id="12296" name="home" />
   <e id="12297" name="rage" />
-  <e id="12298" name="annoyed" />
+  <e id="12298" name="inlove" />
+  <e id="12299" name="catcall" />
+  <e id="12300" name="nasty1" />
+  <e id="12301" name="nasty2" />
+  <e id="12302" name="heard" />
+  <e id="12303" name="excited" />
+  <e id="12304" name="annoyed" />
 </enum>

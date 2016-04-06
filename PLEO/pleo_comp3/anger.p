@@ -111,7 +111,7 @@ public anger_behavior_eval(behavior_id)
         // he should always run the eat script.
         case scr_annoyed:
         {
-            if (property_get(property_ragepoints) <60){
+            if (property_get(property_ragepoints) <70){
                 sound_play(snd_growl_1);
                 //while(sound_is_playing(snd_growl_1)){}
                 return 80;
@@ -122,7 +122,7 @@ public anger_behavior_eval(behavior_id)
 
         case scr_growl:
         {
-            if ((property_get(property_ragepoints) < 80) && (property_get(property_ragepoints) > 60)){
+            if ((property_get(property_ragepoints) < 80) && (property_get(property_ragepoints) >= 70)){
                 sound_play(snd_growl_2);
                 //while(sound_is_playing(snd_growl_2)){}
                 return 50;
@@ -132,6 +132,8 @@ public anger_behavior_eval(behavior_id)
         case scr_rage:
         {
             if (property_get(property_ragepoints) >= 80){
+				//motion_stop(mot_growl_pos);
+				//sound_stop(snd_growl_2);
                 //sound_play(snd_growl_master);
                 sound_play(snd_growl_3_loud);
                 //while(sound_is_playing(snd_growl_3)){}

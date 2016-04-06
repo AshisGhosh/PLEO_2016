@@ -6,9 +6,12 @@
 \***************************************************/
 
 enum user_property_name {
-  property_min         = 20480,
-  property_blood_sugar = 20480,
-  property_happiness   = 20481,
-  property_ragepoints  = 20482,
+  property_min           = 20480,
+  property_blood_sugar   = 20480,
+  property_happiness     = 20481,
+  property_ragepoints    = 20482,
+  property_lovepoints    = 20483,
+  property_disgustpoints = 20484,
+  property_pumped        = 20485,
   property_max
 };
