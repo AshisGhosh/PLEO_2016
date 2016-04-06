@@ -59,6 +59,7 @@
     <sound path="${SOUNDS}/growl_1.wav" />
     <sound path="${SOUNDS}/growl_2.wav" />
     <sound path="${SOUNDS}/growl_3.wav" />
+    <sound path="${SOUNDS}/growl_3_loud.wav" />
     <sound path="${SOUNDS}/growl_master.wav" />
 
     <!-- Motions -->
