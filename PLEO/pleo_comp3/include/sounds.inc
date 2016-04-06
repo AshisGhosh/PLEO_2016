@@ -40,5 +40,6 @@ enum sound_name {
   snd_growl         =  4125,
   snd_growl_1       =  4126,
   snd_growl_2       =  4127,
+  snd_growl_3       =  4128,
   snd_max
 };

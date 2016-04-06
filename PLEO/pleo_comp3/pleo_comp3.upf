@@ -58,6 +58,7 @@
     <sound path="${SOUNDS}/growl.wav" />
     <sound path="${SOUNDS}/growl_1.wav" />
     <sound path="${SOUNDS}/growl_2.wav" />
+    <sound path="${SOUNDS}/growl_3.wav" />
 
     <!-- Motions -->
     <motion path="${MOTIONS}/hungry_search.csv" />
