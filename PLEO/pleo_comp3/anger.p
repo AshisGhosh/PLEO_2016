@@ -122,7 +122,7 @@ public anger_behavior_eval(behavior_id)
 
         case scr_growl:
         {
-            if ((property_get(property_ragepoints) < 80) && (property_get(property_ragepoints) >= 70)){
+            if ((property_get(property_ragepoints) < 85) && (property_get(property_ragepoints) >= 70)){
                 sound_play(snd_growl_2);
                 //while(sound_is_playing(snd_growl_2)){}
                 return 50;
@@ -131,7 +131,7 @@ public anger_behavior_eval(behavior_id)
 
         case scr_rage:
         {
-            if (property_get(property_ragepoints) >= 80){
+            if (property_get(property_ragepoints) >= 85){
 				//motion_stop(mot_growl_pos);
 				//sound_stop(snd_growl_2);
                 //sound_play(snd_growl_master);

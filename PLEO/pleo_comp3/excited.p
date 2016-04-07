@@ -75,10 +75,10 @@ public excited_behavior_eval(behavior_id)
         {
             if ((property_get(property_pumped) > 50) && (property_get(property_pumped)<75 )){
                 sound_play(snd_panting);
-				while(sound_is_playing(snd_panting)){}
-				motion_play(mot_heardyou);
-				while(motion_is_playing(mot_heardyou)){}
-                return 50;
+				//while(sound_is_playing(snd_panting)){}
+				// motion_play(mot_heardyou);
+				// while(motion_is_playing(mot_heardyou)){}
+                return 100;
             }
 
         }
@@ -87,6 +87,7 @@ public excited_behavior_eval(behavior_id)
         case scr_excited:
         {
             if (property_get(property_pumped) >= 75){
+                
                 sound_play(snd_excited);			
                 return 100;
             }

@@ -90,18 +90,19 @@ public on_sensor(time, sensor_name: sensor, value)
             if(property_get(property_ragepoints) <45){
                 property_set(property_ragepoints, 55);
 				property_set(property_pumped,0);
+                sound_stop(snd_excited);
                 //sound_play(snd_beep);
                 //while(sound_is_playing(snd_beep)){}
             }
 			
-			else if(property_get(property_ragepoints) >= 50){
+			else if(property_get(property_ragepoints) >= 50 && property_get(property_ragepoints) < 60){
                 property_set(property_ragepoints, 65);
                 //sound_play(snd_beep);
                 //while(sound_is_playing(snd_beep)){}
             }
 
-            else if(property_get(property_ragepoints) >= 50){
-                property_set(property_ragepoints, 75);
+            else if(property_get(property_ragepoints) >= 60){
+                property_set(property_ragepoints, 83);
                 //sound_play(snd_beep);
                 //while(sound_is_playing(snd_beep)){}
             }
@@ -123,8 +124,9 @@ public on_sensor(time, sensor_name: sensor, value)
                 sound_play(snd_beep);
                 while(sound_is_playing(snd_beep)){}
 			}
-			else if(property_get(property_pumped)>=60) {
-			property_set(property_pumped,100);}
+
+			// else if(property_get(property_pumped)>=60) {
+			//  property_set(property_pumped,100);}
 			
 			if(property_get(property_ragepoints)>40){
                 property_set(property_ragepoints,100);
@@ -132,11 +134,17 @@ public on_sensor(time, sensor_name: sensor, value)
             }
         }
 		
-		case SENSOR_SOUND_LOUD_CHANGE:
+		case SENSOR_SOUND_LOUD:
 		{
-			if (property_get(property_pumped)>=60){
-				property_set(property_pumped,100);
-			}
+			if (value >= 85)
+                if (property_get(property_pumped)>=40 && property_get(property_pumped) < 75){
+    				property_set(property_pumped, property_get(property_pumped) + 10);
+                    sound_stop(snd_panting);
+    			}
+
+                if (property_get(property_pumped)>=75){
+                    property_set(property_pumped, property_get(property_pumped) + 10);
+                }
 		}
 		
         /*case SENSOR_BACK:
@@ -148,14 +156,21 @@ public on_sensor(time, sensor_name: sensor, value)
 		
 		case SENSOR_LEFT_ARM:
         {
-			if(property_get(property_lovepoints) <80){
-				property_set(property_lovepoints, get(property_lovepoints) + 20);
-				sound_play(snd_beep);
-				while(sound_is_playing(snd_beep)){}
-				delay(1000)
-			}	
+            if(property_get(property_pumped)>=60) {
+             property_set(property_pumped,100);}
         }
 		
+        case SENSOR_BACK:
+        {
+            if(property_get(property_lovepoints) <80){
+                property_set(property_lovepoints, get(property_lovepoints) + 20);
+                sound_play(snd_beep);
+                while(sound_is_playing(snd_beep)){}
+                delay(1000)
+            }   
+        }
+
+
 		case SENSOR_RIGHT_ARM:
         {
             if(property_get(property_lovepoints)>0){
@@ -197,12 +212,6 @@ public on_sensor(time, sensor_name: sensor, value)
             }
         }
 		
-		case SENSOR_SHAKE:
-        {
-            if(property_get(property_pumped)>60){
-                property_set(property_pumped,100);
-            }
-        }    
 		
     
     }
